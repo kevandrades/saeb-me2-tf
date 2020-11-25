@@ -1,14 +1,20 @@
-library(ggplot2)
-library(readr)
-library(dplyr)
-library(forcats)
 
+###### Carregando os pacotes ######
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(ggplot2, readr, dplyr, forcats)
+
+#=================================================#
+
+###### Carregando os dados ######
+# Definindo banco de dados
 amostra <- read_csv(file.choose())
 
+# Selecionando as colunas
+amostra <- select(amostra, LOCALIZACAO, RACA_COR, SEXO, ESC_MAE, NOTA_LP, NOTA_MT, AFAZERES_DOM)
 
-amostra <- select(amostra, LOCALIZACAO,RACA_COR,SEXO,ESC_MAE,NOTA_LP,NOTA_MT, AFAZERES_DOM)
+#=================================================#
 
-mae <-unique(amostra$ESC_MAE) # Escolaridade da mãe
+mae <- unique(amostra$ESC_MAE) # Escolaridade da mãe
 
 amostra$ESC_MAE <-
   factor(amostra$ESC_MAE,
