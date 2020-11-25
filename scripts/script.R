@@ -20,9 +20,9 @@ afzr <- unique(amostra$AFAZERES_DOM) # Tempos de afazeres domesticos
 
 amostra <- amostra %>%
   mutate(
-    ESC_MAE = factor(ESC_MAE, 
+    ESC_MAE = factor(ESC_MAE, # ordena a escolaridade da mãe
       labels = c(mae[4], mae[7], mae[5], mae[6], mae[2], mae[1], mae[3])),
-    AFAZERES_DOM = factor(AFAZERES_DOM,  
+    AFAZERES_DOM = factor(AFAZERES_DOM, # ordena afazeres domésticos
       labels = c(afzr[5], afzr[2], afzr[3], afzr[4], afzr[1]))
 )
 
