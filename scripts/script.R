@@ -7,7 +7,7 @@ pacman::p_load(ggplot2, readr, dplyr, forcats)
 
 ###### Carregando os dados ######
 # Definindo banco de dados
-amostra <- read_csv('./data/saeb.csv')
+amostra <- read_csv('data/saeb.csv')
 
 # Selecionando as colunas
 amostra <- select(amostra, LOCALIZACAO, RACA_COR, SEXO, ESC_MAE, NOTA_LP, NOTA_MT, AFAZERES_DOM)
