@@ -1,6 +1,6 @@
 ###### Carregando os pacotes ######
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr)
+pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table)
 
 #=================================================#
 # 1. | Carregando dados 
@@ -16,13 +16,16 @@ pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr)
 #=================================================#
 
 ####  1. ##### Carregando os dados ######
-
-# Definindo banco de dados
-dados <- read_csv('data/saeb.csv') # 5271 observações 
-
-
-# Selecionando as colunas
-dados <- select(dados, LOCALIZACAO, RACA_COR, SEXO, ESC_MAE, NOTA_LP, NOTA_MT, AFAZERES_DOM)
+dados <- fread('data/saeb.csv', # definindo os dados
+  select = c( # escolhendo colunas
+    'LOCALIZACAO',
+    'RACA_COR',
+    'SEXO',
+    'ESC_MAE',
+    'NOTA_LP',
+    'NOTA_MT',
+    'AFAZERES_DOM')) %>%
+  as_tibble() # transformando em tibble
 
 # Fatoramento das colunas com string
 dados <- dados %>%
