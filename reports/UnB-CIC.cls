@@ -31,11 +31,11 @@
 %opções de curso
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{bacharelado}{%
-    \gdef\@nomecurso{Bacharelado em Estat\´istica}%
+    \gdef\@nomecurso{Bacharelado em Estat\´{i}stica}%
     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{licenciatura}{%
-    \gdef\@nomecurso{Curso de Estat\´istica --- Licenciatura}%
+    \gdef\@nomecurso{Curso de Estat\´{i}stica --- Licenciatura}%
     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{engenharia}{%
@@ -43,7 +43,7 @@
     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{estatistica}{%
-    \gdef\@nomecurso{Bacharelado em Estat\´istica}%
+    \gdef\@nomecurso{Bacharelado em Estat\´{i}stica}%
     \gdef\@mododeescrita{Trabalho}}%
 
 
@@ -631,10 +631,10 @@
 			\@mododeescrita\ %
 			\if@posgraduacao%
 				\if@ppca%
-					apresentada como requisito parcial para %
+					apresentado como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
-					apresentada como requisito parcial para\\
+					apresentado como requisito parcial para\\
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do %
 				\fi%
 				\@nomecurso\ em \@nomeDoPrograma%
@@ -673,8 +673,8 @@
 				\fi%
 				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
-				apresentada como requisito parcial\\
-				para conclus\~ao do \@nomecurso%
+			apresentado como requisito parcial\\
+			para conclus\~ao da disciplina de Métodos Estatísticos 2.%
 			\fi%
 			\vfill%
 			\@nomeorientador\ (\@sexoorientador)\\
