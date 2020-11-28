@@ -5,14 +5,14 @@
 %% --- Contextualização do departamento ---
 %%
 
-\def\@departamento{Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o}
+\def\@departamento{Departamento de Estat\´istica}
 \def\@instituto{Instituto de Ci\^{e}ncias Exatas}
 \def\@universidade{Universidade de Bras\'{\i}lia}
 \def\@siglauni{UnB}
 \def\@cidade{Bras\'ilia}
 \def\@uf{DF}
 \def\@cidadeuf{\@cidade--\@uf}
-\def\@pais{Brasil}
+\def\@pais{Brasil~}
 
 %%
 %% --- Definição de opções ---
@@ -31,16 +31,20 @@
 %opções de curso
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{bacharelado}{%
-    \gdef\@nomecurso{Bacharelado em Ci\^encia da Computa\c{c}\~ao}%
+    \gdef\@nomecurso{Bacharelado em Estat\´istica}%
     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{licenciatura}{%
-    \gdef\@nomecurso{Curso de Computa\c{c}\~ao --- Licenciatura}%
+    \gdef\@nomecurso{Curso de Estat\´istica --- Licenciatura}%
     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{engenharia}{%
-    \gdef\@nomecurso{Curso de Engenharia da Computa\c{c}\~ao}%
+    \gdef\@nomecurso{Curso de Engenharia da Estat\´istica}%
     \gdef\@mododeescrita{Monografia}}%
+
+\DeclareOptionX{estatistica}{%
+    \gdef\@nomecurso{Bacharelado em Estat\´istica}%
+    \gdef\@mododeescrita{Trabalho}}%
 
 
 \def\@nomecurso{\@empty}%
@@ -458,6 +462,22 @@
 	\author{\primeiroautor\\ \segundoautor}
 }
 
+\newcommand{\cocoautor}[2]{
+	\if@posgraduacao
+		\ClassError{UnB-CIC}
+			{Comando \protect\cocoautor\space invalido para mestrado}
+			{Apenas trabalhos de graduacao podem ter mais de um autor}
+	\fi
+	\@ifundefined{primeiroautor}{
+		\ClassError{UnB-CIC}
+			{Comando \protect\autor\space deve ser chamado antes de \protect\coautor\space}
+			{O autor principal deve ser definido antes do secundario}
+	}{}
+	\def\terceiroautor{#1\ #2}% Autor secundário em ordem Prenome Nome
+	\def\terceiroautorinv{#2,\ #1}% Autor secundário em ordem Nome, Prenome
+	\author{\primeiroautor\\ \segundoautor \\ \terceiroautor}
+}
+
 %definicao do coordenador do curso
 \def\coordenador{\@ifnextchar[%]
               {\at@coorda}%Se primeiro argumento opcional chama esta
@@ -476,11 +496,11 @@
               {\at@orienta}%Se primeiro argumento opcional chama esta
               {\at@oriento}}%senao chama esta rotina
 
-\def\at@orienta[#1]#2#3{\def\@sexoorientador{Orientadora}%
+\def\at@orienta[#1]#2#3{\def\@sexoorientador{Professora}%
                         \def\@nomeorientador{#2}%
                         \def\@filiorientador{#3}}
 
-\def\at@oriento#1#2{\def\@sexoorientador{Orientador}%
+\def\at@oriento#1#2{\def\@sexoorientador{Professor}%
                         \def\@nomeorientador{#1}%
                         \def\@filiorientador{#2}}
 
@@ -619,8 +639,8 @@
 				\fi%
 				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
-				apresentada como requisito parcial\\
-				para conclus\~ao do \@nomecurso%
+				apresentado como requisito parcial\\
+				para conclus\~ao da disciplina de Métodos Estatísticos 2.%
 			\fi%
 			\vfill%
 			\@sexoorientador\\\@nomeorientador\\%
