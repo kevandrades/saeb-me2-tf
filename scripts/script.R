@@ -171,7 +171,26 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
       testes_adere[[as.character(n)]][[teste]] <-
         map_dbl(amostra_adere_30, ~ gofTest(.x, test = teste)$p.value) # P-valor do teste
     }
-  }
+  }#================== Relações =====================#
+# 
+# -------------- Descrições ----------------------#
+# 
+# - Quantitativa:
+# Continua: NOTAS_(MT/LP)
+# Discreta: AFAZERES_DOM
+# 
+# - Qualitativa:
+# Nominal: LOCALIZACAO, SEXO, RACA_COR
+# Ordinal: AFAZERES_DOM, ESC_MAE
+# ------------------------------------------------#
+# 
+# -- Teste + Fator --- Interesse -----------------# 
+#
+# RD || RI + Loc --- Notas || Afazeres
+#  RD & RI + Raça_cor --- Notas e Afazeres
+#       RD + Esc_mae --- Notas
+#       RI + sexo --- Afazeres
+# 
 }
 
 #---------------- Comparação --------------------#
@@ -191,21 +210,17 @@ comp_afr <- select(dados, LOCALIZACAO, RACA_COR, SEXO, AFAZERES_DOM) %>% # Compa
 
 ## RACA_COR --- AFAZERES_DOM ##
 # Não teve relação!
-kruskal.test(AFAZERES_DOM ~ RACA_COR,comp) # Mesmo p-valor para 2 categorias
-posthoc.kruskal.conover.test(AFAZERES_DOM ~ RACA_COR, comp) # Teste pareado
+kruskal.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Mesmo p-valor para 2 categorias
+posthoc.kruskal.conover.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Teste pareado
 
 
 ## LOCALIZACAO --- AFAZERES_DOM ##
 # Teve relação!
-kruskal.test(AFAZERES_DOM ~ LOCALIZACAO,comp) # Mesmo p-valor para 2 categorias
-wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp)
+kruskal.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr) # Mesmo p-valor para 2 categorias
+wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr)
 
 
 ## SEXO --- AFAZERES_DOM ##
 # Teve relação!
-kruskal.test(AFAZERES_DOM ~ SEXO,comp) # Possui o mesmo p-valor
-wilcox.test(AFAZERES_DOM ~ SEXO, comp) # Tanto faz utilizar
-
-
-
-
+kruskal.test(AFAZERES_DOM ~ SEXO, comp_afr) # Possui o mesmo p-valor
+wilcox.test(AFAZERES_DOM ~ SEXO, comp_afr) # Tanto faz utilizar
