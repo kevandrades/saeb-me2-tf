@@ -1,6 +1,6 @@
 ###### Carregando os pacotes ######
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, EnvStats)
+pacman::p_load(ggplot2, readr, dplyr, forcats, reshape2, purrr, data.table, EnvStats, PMCMR)
 
 
 #================== Relações =====================#
@@ -27,8 +27,8 @@ pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, EnvSt
 # 1. | Carregando dados 
 # 2. | Medidas basicas
 # 3. | Testes
-# 
-# 
+# - Aderência
+# - Comparação
 # 
 # 
 # 
@@ -62,7 +62,7 @@ pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, EnvSt
 # 
 # >> Vários grupos (3): <<
 # .1) Fisher (ANOVA) (N)
-# .2) Kruskal-Wallis
+# .2) Kruskal- Wallis
 # 
 # ----- Relações Dependentes (RD) ----
 # >> Dois grupos (2): <<
@@ -155,7 +155,9 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 
 #### 2. ##### Testes ######
 
-#------------ Aderência (Normal) ----------------#
+#---------------- Aderência (A) ------------------#
+# Para as NOTAS_(LP/MT) testes de normalidade
+
 
 set.seed(7)
 notas <- select(dados, NOTA_MT, NOTA_LP)
@@ -172,9 +174,29 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
   }
 }
 
-s
+#---------------- Comparação --------------------#
+# Testes para as relações LOCALIZACAO, RACA_COR, SEXO, com os AFAZERES_DOM
+
+comp_afr <- select(dados, LOCALIZACAO, RACA_COR, SEXO, AFAZERES_DOM) %>% # Comparações 
+  mutate(AFAZERES_DOM = fct_anon(AFAZERES_DOM) %>% as.numeric()) # Transforma em ordinal ("Discreta")
 
 
+## RACA_COR --- AFAZERES_DOM ##
+# Não teve relação!
+kruskal.test(AFAZERES_DOM ~ RACA_COR,comp) # Mesmo p-valor para 2 categorias
+posthoc.kruskal.conover.test(AFAZERES_DOM ~ RACA_COR, comp) # Teste pareado
+
+
+## LOCALIZACAO --- AFAZERES_DOM ##
+# Teve relação!
+kruskal.test(AFAZERES_DOM ~ LOCALIZACAO,comp) # Mesmo p-valor para 2 categorias
+wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp)
+
+
+## SEXO --- AFAZERES_DOM ##
+# Teve relação!
+kruskal.test(AFAZERES_DOM ~ SEXO,comp) # Possui o mesmo p-valor
+wilcox.test(AFAZERES_DOM ~ SEXO, comp) # Tanto faz utilizar
 
 
 
