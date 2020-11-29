@@ -1,6 +1,10 @@
 ###### Carregando os pacotes ######
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2, readr, dplyr, forcats, reshape2, purrr, data.table, EnvStats, PMCMR)
+pacman::p_load(
+  ggplot2, readr, dplyr,
+  forcats, reshape2, purrr,
+  data.table, EnvStats, PMCMR
+  )
 
 
 #================== Relações =====================#
