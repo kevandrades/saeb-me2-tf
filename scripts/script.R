@@ -225,3 +225,5 @@ wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr)
 kruskal.test(AFAZERES_DOM ~ SEXO, comp_afr) # Possui o mesmo p-valor
 wilcox.test(AFAZERES_DOM ~ SEXO, comp_afr) # Tanto faz utilizar
 
+
+# teste de commits
