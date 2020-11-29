@@ -1,6 +1,6 @@
 ###### Carregando os pacotes ######
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, MASS)
+pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, EnvStats)
 
 
 #================== Relações =====================#
@@ -35,6 +35,48 @@ pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table, MASS)
 # 
 # 
 #=================================================#
+#
+# 3. Testes:
+# 
+# ----- Aderência (A): ----
+# .1) Qui²
+# .2) Komogorov
+# .3) Shapiro-Wilk
+# .4) Anderson-Darling
+# .5) Lilliefor
+# 
+# ----- Variância (V) ----
+# >> Dois grupos (2): << 
+# .1) F-snedecor
+# 
+# >> Vários grupos (3): <<
+# .1) Bartlett
+# .2) Levene
+# 
+# ----- Relações independentes (RI) ----
+# >> Dois grupos (2): <<
+# .1) T-student (N)
+# .2) Wilcox
+# .3) Komogorov-Sminorf
+# .4) Cramer-von mise
+# 
+# >> Vários grupos (3): <<
+# .1) Fisher (ANOVA) (N)
+# .2) Kruskal-Wallis
+# 
+# ----- Relações Dependentes (RD) ----
+# >> Dois grupos (2): <<
+# .1) T-student pareado (N)
+# .2) Cox-stuart/John-Arbuthnot(Sinais)
+# .3) Wilcox sinalizados
+# 
+# >> Vários grupos (3):
+# .1) Friedman
+# .2) Quade
+# 
+# 
+#=================================================#
+
 
 ####  1. ##### Carregando os dados ######
 dados <- fread('data/saeb.csv', encoding = 'UTF-8', # definindo os dados
@@ -113,8 +155,24 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 
 #### 2. ##### Testes ######
 
+#------------ Aderência (Normal) ----------------#
 
+set.seed(7)
+notas <- select(dados, NOTA_MT, NOTA_LP)
 
+# P-valores dos testes de Shapiro-Wilk (sw), Shapio-Francia (sf) e Aderson-Darling (ad)
+{testes_adere <- list()
+  for (n in c(30, 50, 100)) { # Tamanhos das amostras
+    adere_amostra <- sample_n(notas, n)
+    testes_adere[[as.character(n)]] <- list()
+    for (teste in c("sw", "sf", "ad")) { # Tipos de testes
+      testes_adere[[as.character(n)]][[teste]] <-
+        map_dbl(amostra_adere_30, ~ gofTest(.x, test = teste)$p.value) # P-valor do teste
+    }
+  }
+}
+
+s
 
 
 
