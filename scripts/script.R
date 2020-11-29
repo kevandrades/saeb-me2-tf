@@ -175,6 +175,14 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
 }
 
 #---------------- Comparação --------------------#
+# Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
+
+comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
+loc <- select(comp_notas, LOCALIZACAO,NOTA_MT,NOTA_LP)
+
+
+
+#---------------- Comparação --------------------#
 # Testes para as relações LOCALIZACAO, RACA_COR, SEXO, com os AFAZERES_DOM
 
 comp_afr <- select(dados, LOCALIZACAO, RACA_COR, SEXO, AFAZERES_DOM) %>% # Comparações 
