@@ -16,7 +16,7 @@ pacman::p_load(ggplot2, readr, dplyr, forcats, reshape, purrr, data.table)
 #=================================================#
 
 ####  1. ##### Carregando os dados ######
-dados <- fread('data/saeb.csv', # definindo os dados
+dados <- fread('data/saeb.csv', encoding = 'UTF-8', # definindo os dados
   select = c( # escolhendo colunas
     'LOCALIZACAO',
     'RACA_COR',
