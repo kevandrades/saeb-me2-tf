@@ -150,8 +150,8 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 
 {basico_afazer <- list()
   for (fator in c("LOCALIZACAO", "RACA_COR", "SEXO")) {
-    basico_afazer[[fator]] <- round(prop.table(table(select(dados,fator,AFAZERES_DOM)),2),2) # Proporção por coluna (2)
-  }
+    basico_afazer[[fator]] <- round(prop.table(table(select(dados,fator,AFAZERES_DOM)),2),2)
+  } # Proporção por coluna (2)
 }
 
 
@@ -161,7 +161,6 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 
 #---------------- Aderência (A) ------------------#
 # Para as NOTAS_(LP/MT) testes de normalidade
-
 
 set.seed(7)
 notas <- select(dados, NOTA_MT, NOTA_LP)
@@ -173,9 +172,12 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
     testes_adere[[as.character(n)]] <- list()
     for (teste in c("sw", "sf", "ad")) { # Tipos de testes
       testes_adere[[as.character(n)]][[teste]] <-
-        map_dbl(amostra_adere_30, ~ gofTest(.x, test = teste)$p.value) # P-valor do teste
+        map_dbl(notas, ~ gofTest(.x, test = teste)$p.value) # P-valor do teste
     }
-  }#================== Relações =====================#
+  }
+}
+
+#================== Relações =====================#
 # 
 # -------------- Descrições ----------------------#
 # 
@@ -195,14 +197,36 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
 #       RD + Esc_mae --- Notas
 #       RI + sexo --- Afazeres
 # 
+# ------------------------------------------------#
+
+
+
+#---------------- Comparação ---------------------#
+# Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
+comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
+
+# Testes ANOVA e Kruskal-Wallis
+
+# P-valores para as realções da LP - MT
+{testes_notas_menos <- list()
+  for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
+    testes_notas_menos[[fator]][["Kruskal-W"]] <- list(kruskal.test(as.formula(paste("(NOTA_LP - NOTA_MT) ~", fator)), comp_notas)$p.value)
+    testes_notas_menos[[fator]][["ANOVA"]] <-  summary(aov(as.formula(paste("(NOTA_LP - NOTA_MT) ~", fator)), comp_notas))[[1]][["Pr(>F)"]][1]
+  }
 }
 
-#---------------- Comparação --------------------#
-# Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
+# P-valores para as realções da LP + MT, 
+{testes_notas_mais <- list()
+  for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
+    testes_notas_mais[[fator]][["Kruskal-W"]] <- kruskal.test(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas)$p.value
+    testes_notas_mais[[fator]][["ANOVA"]] <-  summary(aov(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas))[[1]][["Pr(>F)"]][1]
+  }
+}
 
-comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
-loc <- select(comp_notas, LOCALIZACAO,NOTA_MT,NOTA_LP)
 
+# Comparação para os testes
+pairwise.t.test("Coloca a formula aq: (NOTA_LP + NOTA_MT) ~ fator, dados") # Testes dois a dois
+posthoc.kruskal.conover.test("Coloca a formula aq: (NOTA_LP + NOTA_MT) ~ fator, dados") # Testes dois a dois
 
 
 #---------------- Comparação --------------------#
