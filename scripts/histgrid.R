@@ -1,11 +1,10 @@
  
 library( gridExtra)
-    
-if (!require("pacman")) install.packages("pacman")
+
 pacman::p_load(
   ggplot2, readr, dplyr,
   forcats, reshape2, purrr,
-  data.table, EnvStats, PMCMR
+  data.table, EnvStats, PMCMR, gridExtra
 )
 
 
