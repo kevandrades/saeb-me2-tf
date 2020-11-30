@@ -205,17 +205,20 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
 # Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
 comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
 
-# Testes ANOVA e Kruskal-Wallis
 
-# P-valores para as realções da LP - MT
+# Testes ANOVA e Kruskal-Wallis #
+
+
+# P-valores para as realções da LP - MT (Não teve muitas relações! [RA 95%] )
 {testes_notas_menos <- list()
   for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
-    testes_notas_menos[[fator]][["Kruskal-W"]] <- list(kruskal.test(as.formula(paste("(NOTA_LP - NOTA_MT) ~", fator)), comp_notas)$p.value)
+    testes_notas_menos[[fator]][["Kruskal-W"]] <- kruskal.test(as.formula(paste("(NOTA_LP - NOTA_MT) ~", fator)), comp_notas)$p.value
     testes_notas_menos[[fator]][["ANOVA"]] <-  summary(aov(as.formula(paste("(NOTA_LP - NOTA_MT) ~", fator)), comp_notas))[[1]][["Pr(>F)"]][1]
   }
 }
 
-# P-valores para as realções da LP + MT, 
+
+# P-valores para as realções da LP + MT, (Todas tiveram relação!!! [RA 95%])
 {testes_notas_mais <- list()
   for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
     testes_notas_mais[[fator]][["Kruskal-W"]] <- kruskal.test(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas)$p.value
@@ -224,26 +227,42 @@ comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
 }
 
 
-# Comparação para os testes
-pairwise.t.test("Coloca a formula aq: (NOTA_LP + NOTA_MT) ~ fator, dados") # Testes dois a dois
-posthoc.kruskal.conover.test("Coloca a formula aq: (NOTA_LP + NOTA_MT) ~ fator, dados") # Testes dois a dois
+# Comparação para os testes das realções da LP + MT
+
+
+# LOCALIZACAO, em média maiores notas na Ubana
+comp_notas %>% group_by(LOCALIZACAO) %>% summarise(media = mean(NOTA_LP + NOTA_MT))
+
+
+# RACA_COR
+pairwise.t.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$RACA_COR) # Testes dois a dois
+posthoc.kruskal.conover.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$RACA_COR) # Testes dois a dois
+
+
+# ESC_MAE
+pairwise.t.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$ESC_MAE) # Testes dois a dois
+posthoc.kruskal.conover.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$ESC_MAE) # Teste
+
 
 
 #---------------- Comparação --------------------#
 # Testes para as relações LOCALIZACAO, RACA_COR, SEXO, com os AFAZERES_DOM
 
 comp_afr <- select(dados, LOCALIZACAO, RACA_COR, SEXO, AFAZERES_DOM) %>% # Comparações 
-  mutate(AFAZERES_DOM = fct_anon(AFAZERES_DOM) %>% as.numeric()) # Transforma em ordinal ("Discreta")
+  mutate(AFAZERES_DOM = AFAZERES_DOM %>% fct_recode("1" = "Não faz ou faz menos de 1 hora",
+                                                    "2" = "Entre 1 e 2 horas",
+                                                    "3" = "Mais de 2 horas, até 3 horas",
+                                                    "4" = "Mais de 3 horas") %>% as.numeric()) # Transforma em ordinal ("Discreta")
+
 
 
 ## RACA_COR --- AFAZERES_DOM ##
 # Não teve relação!
 kruskal.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Mesmo p-valor para 2 categorias
-posthoc.kruskal.conover.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Teste pareado
 
 
 ## LOCALIZACAO --- AFAZERES_DOM ##
-# Teve relação!
+# Não teve relação!
 kruskal.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr) # Mesmo p-valor para 2 categorias
 wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr)
 
@@ -252,3 +271,10 @@ wilcox.test(AFAZERES_DOM ~ LOCALIZACAO, comp_afr)
 # Teve relação!
 kruskal.test(AFAZERES_DOM ~ SEXO, comp_afr) # Possui o mesmo p-valor
 wilcox.test(AFAZERES_DOM ~ SEXO, comp_afr) # Tanto faz utilizar
+
+
+# Em media o sexo feminino faz por mais tempo afazeres domesticos que o sexo masculino
+comp_afr %>% group_by(SEXO) %>% summarise(media = mean(AFAZERES_DOM))
+
+
+
