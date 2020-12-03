@@ -1,8 +1,7 @@
- 
-library( gridExtra)
+if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(
-  ggplot2, readr, dplyr,
+  gridExtra, ggplot2, readr, dplyr,
   forcats, reshape2, purrr,
   data.table, EnvStats, PMCMR, gridExtra
 )
@@ -71,9 +70,9 @@ theme_hjw <- function(){
 
 #___________________________________Função para gerar o histograma
 
-histMtLp <- function(dados,xname){
+histMtLp <- function(dados, xname){
 
-dados<-dados  
+dados <- dados  
  
 # separando o banco em 2 pra juntar nota em mat e lp em uma coluna só
 ntmt <- dados
@@ -103,7 +102,7 @@ dados %>%
 #fazendo cada um dos histogramas individualmente pra gerar o grid
 
 #escolaridade da mae                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-escm1 <- saeb %>% filter(ESC_MAE=='Não sei')%>%histMtLp('Não Sabe')
+escm1 <- saeb %>% filter(ESC_MAE=='Não sei') %>% histMtLp('Não Sabe')
 escm2 <- saeb %>% filter(ESC_MAE=='Nunca estudou') %>%histMtLp('Nunca estudou')
 escm3 <- saeb %>% filter(ESC_MAE=='Não completou a 4.ª série/5.º ano do Ensino Fundamental')%>%histMtLp('Fundamental 1 Incompleto')
 escm4 <- saeb %>% filter(ESC_MAE=='Completou a 4.ª série/5.º ano, mas não completou a 8.ª série/9.º ano do Ensino Fundamental')%>%histMtLp('Fundamental 2 Incompleto')
