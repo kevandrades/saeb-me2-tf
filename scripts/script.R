@@ -228,12 +228,10 @@ comp_notas %>% group_by(LOCALIZACAO) %>% summarise(media = mean(NOTA_LP + NOTA_M
 
 # RACA_COR
 pairwise.t.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$RACA_COR, p.adjust.method = "b") # Testes dois a dois
-posthoc.kruskal.conover.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$RACA_COR) # Testes dois a dois
 
 
 # ESC_MAE
 pairwise.t.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$ESC_MAE, p.adjust.method = "b") # Testes dois a dois
-posthoc.kruskal.conover.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$ESC_MAE) # Teste
 
 
 
