@@ -109,9 +109,9 @@ dados <- dados %>%
     ESC_MAE = factor(ESC_MAE) %>% fct_relevel( # Reordenando fatores
       c("Não sei", 
         "Nunca estudou",
-        "Não completou a 4.ª série/5.º ano do Ensino Fundamental",
-        "Completou a 4.ª série/5.º ano, mas não completou a 8.ª série/9.º ano do Ensino Fundamental",
-        "Completou a 8.ª série/9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
+        "Não completou o 5.º ano do Ensino Fundamental",
+        "Completou o 5.º ano, mas não completou a o 9.º ano do Ensino Fundamental",
+        "Completou o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
         "Completou o Ensino Médio, mas não completou a Faculdade",
         "Completou a Faculdade")),
     AFAZERES_DOM = factor(AFAZERES_DOM) %>% fct_relevel(
