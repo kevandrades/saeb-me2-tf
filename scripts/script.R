@@ -206,12 +206,14 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
 comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
 
 
+
+
 # Testes ANOVA e Kruskal-Wallis #
 
 # P-valores para as realções da LP + MT, (Todas tiveram relação!!! [RA 95%])
 {testes_notas_mais <- list()
   for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
-    testes_notas_mais[[fator]][["Kruskal-W"]] <- kruskal.test(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas)$p.value
+    testes_notas_mais[[fator]][["Bartlett"]] <- bartlett.test(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas)$p.value
     testes_notas_mais[[fator]][["ANOVA"]] <-  summary(aov(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas))[[1]][["Pr(>F)"]][1]
   }
 }
