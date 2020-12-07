@@ -2,7 +2,7 @@ if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(
   gridExtra, ggplot2, readr, dplyr,
-  forcats, reshape2, purrr,
+  forcats, reshape2, purrr, patchwork,
   data.table, EnvStats, PMCMR, gridExtra
 )
 
@@ -45,10 +45,11 @@ saeb <- saeb %>%
         "Entre 1 e 2 horas", 
         "Mais de 2 horas, até 3 horas",
         "Mais de 3 horas")) %>% fct_collapse("Não faz ou faz menos de 1 hora" = c("Não faço trabalhos domésticos",
-                                                                                  "Menos de 1 hora"))
+                                                                                  "Menos de 1 hora")),
+    NOTAS = NOTA_LP + NOTA_MT
   )
 
-#=================================================#
+#=============== Gráficos ======================#
 
 #_________________________Temazin
 theme_hjw <- function(){
@@ -141,3 +142,58 @@ grid.arrange(escm1,rc1,lc1,sx1,
              escm7,vf,vf,vf,
              nrow=7, top='Histogramas para o desempenho dos Estudantes')
 x11()
+
+
+
+# Densidade (LOC --- NOTAS )
+
+# Função para criar linhas da densidade
+StatNormalDensity <- ggproto(
+  "StatNormalDensity", Stat,
+  required_aes = "x",
+  default_aes = aes(y = stat(y)),
+  
+  compute_group = function(data, scales, xlim = NULL, n = 101) {
+    mean_value <- mean(data$x)
+    sd_value <- sd(data$x)
+    fun <- function(x) dnorm(x, mean = mean_value, sd = sd_value)
+    StatFunction$compute_group(data, scales, fun = fun, xlim = xlim, n = n)
+  }
+)
+
+
+
+ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO)) +
+#  geom_density(alpha = 0.7, size = 1, linetype = 1)+
+  geom_line(stat = StatNormalDensity, size = 1, linetype = 1)+
+  geom_vline(data = saeb %>% group_by(LOCALIZACAO) %>% summarise(m = mean(NOTAS), sd = sd(NOTAS)),
+             aes(xintercept = m, color = LOCALIZACAO), size = 1, show.legend = F)+
+  scale_color_manual(values = c("black","red")) +
+  theme_minimal()+
+  guides(color = guide_legend(title = "Localização")) +
+  labs(title = "Densidade normal da soma das notas dos alunos com base \nna localização da escola",
+       subtitle = "Rural ~N(479, 84.3²), Urbana ~N(512, 86²)",
+       x = "Nota",
+       y = "Densidade")
+
+
+# Barras (Sexo --- afazeres)
+
+# Dados da porcetagem do sexo com base nos afazeres
+pct_sexo  <- saeb %>% 
+  group_by(AFAZERES_DOM,SEXO) %>% 
+  summarise(count = n()) %>% 
+  mutate(perc = count/sum(count))
+
+ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc, fill = SEXO)) +
+  geom_col(position = "dodge") +
+  labs(title = "Tempo de afazeres domésticos com base na porcetagens dos sexos dos alunos",
+       fill = "Sexo",
+       x = "Tempo de afazeres domésticos",
+       y = NULL)+
+  scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
+  scale_x_discrete()+
+  theme_minimal()
+
+
+
