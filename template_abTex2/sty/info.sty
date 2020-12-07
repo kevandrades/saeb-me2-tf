@@ -1,0 +1,71 @@
+% ------------------------------------------------------------------------
+% Arquivo: info.sty
+% ------------------------------------------------------------------------
+
+% Aliterações
+\newcommand{\UNB}{Universidade de Brasília}
+\newcommand{\unb}{{\small UnB}}           % Sigla UnB
+\newcommand{\CPAI}{Instituto de Ciências Exatas}
+\newcommand{\cpai}{{\small IE}}         % Sigla CPAI
+\newcommand{\DE}{Departamento de Estatística}
+\newcommand{\de}{{\small DE}}
+\newcommand{\versao}{1}               % Número / código da versão do documento
+\newcommand{\logo}{\centering{\includegraphics[scale = 2]{img/UNBLOGO.png}}}
+
+\newcommand{\projeto}{Saeb 2017}    % Nome do projeto
+
+% Palavras-chave
+\newcommand{\kwords}{1. Saeb 2017. 2. Amostra. 3. Pesquisa.}
+
+% Título do Documento
+\titulo{Relatório de Pesquisa}
+
+% Pesquisador(es) do projeto
+\autor{%
+  Allan Victor Almeida Faria\thanks{\href{mailto:190127180@aluno.unb.br}{190127180@aluno.unb.br}}
+  }
+
+% Local e data
+\local{Brasília, DF}
+\data{Setembro, 2020}
+\instituicao{\UNB\ (\unb)
+  \par
+  \CPAI\ (\cpai)
+  \par
+  \DE\ (\de)
+  }
+
+% Tipo de trabalho
+\tipotrabalho{Relatório de Pesquisa}
+
+% Preâmbulo
+% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração 
+\preambulo{\imprimirtitulo\ do projeto \projeto.}
+
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+  %pagebackref=true,
+  pdftitle={\@title}, 
+  pdfauthor={\@author},
+  pdfsubject={\imprimirpreambulo},
+  pdfcreator={Allan},
+  pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+  colorlinks=true,       		% false: boxed links; true: colored links
+  linkcolor=blue,          	% color of internal links
+  citecolor=blue,        		% color of links to bibliography
+  filecolor=magenta,      		% color of file links
+  urlcolor=blue,
+  bookmarksdepth=4
+}
+\makeatother
+% --- 

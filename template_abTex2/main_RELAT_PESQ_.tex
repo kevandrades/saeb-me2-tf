@@ -1,0 +1,166 @@
+% ------------------------------------------------------------------------
+% == Modelo de Relatório Técnico/Acadêmico em conformidade com 
+% == ABNT NBR 10719:2015 Informação e documentação -
+% == Relatório técnico e/ou científico
+% ------------------------------------------------------------------------
+% == Adapatado para modelo do CPAI
+% ------------------------------------------------------------------------
+
+\documentclass[
+	12pt,				  % tamanho da fonte
+	%openright,	  % capítulos começam em pág ímpar (insere página vazia caso preciso)
+	%twoside,			% para impressão em recto e verso. Oposto a oneside
+  oneside,			% para impressão em recto e verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes em pasta própria para deixar o documento mestre limpo
+\usepackage{sty/pacotes}
+
+% ---
+% Informações de dados sobre o Relatório
+% == IMPORTANTE ABRIR E ALTERAR OS DADOS DESTE ARQUIVO!
+\usepackage{sty/info}
+
+% Início do documento
+\begin{document}
+  % Seleciona o idioma do documento (conforme pacotes do babel)
+  %\selectlanguage{english}
+  \selectlanguage{brazil}
+  
+  % Retira espaço extra obsoleto entre as frases.
+  \frenchspacing 
+  
+  % ----------------------------------------------------------
+  % == ELEMENTOS PRÉ-TEXTUAIS
+  % ----------------------------------------------------------
+  % \pretextual
+  
+  % ---
+  % Capa
+  \imprimircapa
+
+  % ---
+  % Folha de rosto (o * indica que haverá a ficha bibliográfica)
+  \imprimirfolhaderosto*
+  
+  % ---
+  % Anverso da folha de rosto
+%  \include{pretextuais/creditos}
+ 
+  
+  % ---
+  % Agradecimentos
+
+  
+  % ---
+  % Resumo
+  \include{pretextuais/resumo}
+  
+  % ---
+  % inserir listas de ilustrações, tabelas e quadros
+  \include{pretextuais/itq}
+  
+  % ---
+  % inserir listas de siglas
+
+  
+  % ---
+  % inserir o sumario
+  \pdfbookmark[0]{\contentsname}{toc}
+  \tableofcontents*
+  \cleardoublepage
+  % ---
+
+  % ----------------------------------------------------------
+  % == ELEMENTOS TEXTUAIS
+  \textual
+  
+  % ----------------------------------------------------------
+  % Introdução
+  \include{textuais/introducao}
+  
+  % ----------------------------------------------------------
+  % == PARTE - preparação da pesquisa
+  % ----------------------------------------------------------
+  \part{FUNDAMENTAÇÃO}
+  
+  % ----------------------------------------------------------
+  % Capitulo com exemplos de comandos inseridos de arquivo externo 
+  \include{textuais/metodos}
+  
+  % ----------------------------------------------------------
+  % == PARTE - Resultados
+  % ----------------------------------------------------------
+  \part{Resultados}
+  
+  % ---
+  % Capitulo de revisão de literatura
+  \include{textuais/resultados}
+  
+  % ---
+  % == PARTE - Finaliza a parte no bookmark do PDF
+  %    para que se inicie o bookmark na raiz e adiciona espaço de parte no Sumário
+  \phantompart
+  
+  % ---
+  % Conclusão
+  \include{textuais/conclusao}
+  
+  % ----------------------------------------------------------
+  % == ELEMENTOS PÓS-TEXTUAIS
+  % ----------------------------------------------------------
+  \postextual
+  
+  % ----------------------------------------------------------
+  % Referências bibliográficas
+  \bibliography{bib/referencia}
+  
+  % ----------------------------------------------------------
+  % Glossário
+  % Consulte o manual da classe abntex2 para orientações sobre o glossário.
+  %\glossary
+  
+  % ----------------------------------------------------------
+  % == APÊNDICES
+  % ----------------------------------------------------------
+
+  % ---
+  % Inicia os apêndices
+ 
+  
+  % ----------------------------------------------------------
+  % == ANEXOS
+  % ----------------------------------------------------------
+  
+  % ---
+  % Inicia os anexos
+  % ---
+  \begin{anexosenv}
+    
+    % Imprime uma página indicando o início dos anexos
+    \partanexos
+    % ---
+    % Anexos (incluir os arquivos com os anexos)
+    \include{postextuais/anexo1}
+  
+  \end{anexosenv}
+  
+  %---------------------------------------------------------------------
+  % == INDICE REMISSIVO
+  %---------------------------------------------------------------------
+  \phantompart
+  
+
+  
+  %---------------------------------------------------------------------
+  % Formulário de Identificação (opcional)
+  %---------------------------------------------------------------------
+  %\include{postextuais/form_identif}
+
+\end{document}

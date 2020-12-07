@@ -1,0 +1,168 @@
+%----------------------------------------------------------------------------------------------------------------
+% File : rev_literatura.tex
+
+
+\chapter{Comparações\label{cap_normal}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\caption{\label{teste_MT}Testes para a comparação dos alunos entre as regiões das escolas com as notas em Matemática (MT) com base na amostra de tamanho 500.}
+    \centering
+    \begin{tabular}{cccc}
+    \toprule
+    Teste & $H_0$& P-valor & Decisão de $H_0$ (95\%)\\
+    \midrule \midrule
+    B & $\sigma_R^2 = \sigma_U^2$ & 0.503 & Aceita\\
+    B & $\sigma_{Raça/Cor}^2$ iguais & 0.265 & Aceita\\
+    B & $\sigma_{Esc(mãe)}^2$ iguais & 0.132 & Aceita\\
+    ANOVA & $\mu_R^2 = \mu_U^2$ iguais & Aprox. 0 & Rejeita\\
+    ANOVA & $\mu_{Raça/Cor}$ iguais & Aprox. 0 & Rejeita\\
+    ANOVA & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
+    \bottomrule
+    \end{tabular}
+    \fonte{Amostra de 2000 alunos do 9º ano do SAEB 2017.}
+    \nota{Amostra retiradas de uma amostragem aleatórias simples de tamanho 500.}
+    \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerado por este estudo aproximadamente zero.}
+\end{table}
+
+
+\begin{table}[htb]
+    \centering
+\caption{\label{comp_MT}Comparações entre as médias de notas em Matemática e as regiões das escolas dos alunos com base na amostra de tamanho 500.}
+    \begin{tabular}{lcc}
+    \toprule
+    Comparações & P-valor & Evidência (RA 95\%)\\
+    \midrule \midrule
+    Amarela = Não quero declarar & 0.4113 & Iguais\\
+    Amarela = Branca & 0.0005 & Desiguais\\
+    Amarela = Indígena & 1.0000 & Iguais\\
+    Amarela = Parda & 1.0000 & Iguais\\
+    Amarela = Preta & 1.0000 & Iguais\\
+    Branca = Não quero declarar & Aprox. 0 & Desiguais\\
+    Branca = Indígena & 0.0010 & Desiguais\\
+    Branca = Parda & Aprox. 0 & Desiguais\\
+    Branca = Preta & Aprox. 0 & Desiguais\\
+    Indígena = Não quero declarar & 1.0000 & Iguais\\
+    Indígena = Parda & 0.7758 & Iguais\\
+    Indígena = Preta & 1.0000  & Iguais\\
+    Parda = Não quero declarar & Aprox. 0 & Desiguais\\
+    Parda = Preta & Aprox. 0 & Desiguais\\
+    \bottomrule
+    \end{tabular}
+    \centering
+    \fonte{Amostra de 2000 alunos do 9º ano do SAEB 2017.}
+    \nota{Amostra retiradas de uma amostragem aleatórias simples de tamanho 500.}
+    \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
+    
+\end{table}
+\clearpage
+
+\begin{table}[htb]
+    \centering
+\caption{\label{comp_MT}Comparações entre as médias de notas em Matemática e as regiões das escolas dos alunos com base na amostra de tamanho 500.}
+    \begin{tabular}{lcc}
+    \toprule
+    Comparações & P-valor & Evidência (RA 95\%)\\
+    \midrule \midrule
+    Não sabe = Nunca estudou & Aprox. 0 & Desiguais\\
+    Não sabe = Incompleto 5.º ano do EF  & 1.0000 & Iguais\\
+    Não sabe = Completou 5.º ano do EF  & 0.0084 & Desiguais\\
+    Não sabe = Completou 9.º ano do EF  & 0.1927 & Iguais\\
+    Não sabe = Completou EM & Aprox. 0 & Desiguais\\
+    Não sabe = Completou Faculdade & Aprox. 0 & Desiguais\\
+    Nunca estudou = Incompleto 5.º ano do EF  & 0.0038 & Desiguais\\
+    Nunca estudou = Completou 5.º ano do EF  & Aprox. 0 & Desiguais\\
+    Nunca estudou = Completou 9.º ano do EF  & Aprox. 0 & Desiguais\\
+    Nunca estudou = Completou EM & Aprox. 0 & Desiguais\\
+    Nunca estudou = Completou Faculdade & Aprox. 0 & Desiguais\\
+    Incompleto 5.º ano do EF = Completou 5.º ano do EF  & 0.0002 & Desiguais\\
+    Incompleto 5.º ano do EF = Completou 9.º ano do EF  & 0.0048 & Desiguais\\
+    Incompleto 5.º ano do EF = Completou EM & Aprox. 0 & Desiguais\\
+    Incompleto 5.º ano do EF = Completou Faculdade & Aprox. 0 & Desiguais\\
+    Completo 5.º ano do EF = Completou 9.º ano do EF  & 1 & Iguais\\
+    Completo 5.º ano do EF = Completou EM & Aprox. 0 & Desiguais\\
+    Completo 5.º ano do EF = Completou Faculdade & Aprox. 0 & Desiguais\\
+    Completo 9.º ano do EF = Completou EM & Aprox. 0 & Desiguais\\
+    Completo 9.º ano do EF = Completou Faculdade & Aprox. 0 & Desiguais\\
+    Completou EM = Completou Faculdade & 1.0000 & Iguais\\
+    \bottomrule
+    \end{tabular}
+    \centering
+    \fonte{Amostra de 2000 alunos do 9º ano do SAEB 2017.}
+    \nota{Amostra retiradas de uma amostragem aleatórias simples de tamanho 500.}
+    \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
+    
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AFAZERES_DOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{table}[htb]
+\caption{\label{teste_MT}Testes para a comparação dos alunos entre as regiões das escolas com as notas em Matemática (MT) com base na amostra de tamanho 500.}
+    \centering
+    \begin{tabular}{cccc}
+    \toprule
+    Teste & $H_0$& P-valor & Decisão de $H_0$ (95\%)\\
+    \midrule \midrule
+    K & $\mu_{Raça/Cor}$ iguais & 0.369 & Aceita\\
+    K & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
+    K & $\mu_M = \mu_F$ iguais & Aprox. 0 & Rejeita\\
+    \bottomrule
+    \end{tabular}
+    \fonte{Amostra de 2000 alunos do 9º ano do SAEB 2017.}
+    \nota{Amostra retiradas de uma amostragem aleatórias simples de tamanho 500.}
+    \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerado por este estudo aproximadamente zero.}
+\end{table}
+
+
+\begin{table}[htb]
+    \centering
+\caption{\label{comp_MT}Comparações entre as médias de notas em Matemática e as regiões das escolas dos alunos com base na amostra de tamanho 500.}
+    \begin{tabular}{lcc}
+    \toprule
+    Comparações & P-valor & Evidência (RA 95\%)\\
+    \midrule \midrule
+    Não sabe = Nunca estudou & 1.0000 & Iguais\\
+    Não sabe = Incompleto 5.º ano do EF  & 0.0078 & Desiguais\\
+    Não sabe = Completou 5.º ano do EF  & 0.0005 & Desiguais\\
+    Não sabe = Completou 9.º ano do EF  & 0.0001 & Desiguais\\
+    Não sabe = Completou EM & Aprox. 0 & Desiguais\\
+    Não sabe = Completou Faculdade & 0.0011 & Desiguais\\
+    Nunca estudou = Incompleto 5.º ano do EF  & 1.0000 & Iguais\\
+    Nunca estudou = Completou 5.º ano do EF  & 0.5598 & Iguais\\
+    Nunca estudou = Completou 9.º ano do EF  & 0.4165 & Iguais\\
+    Nunca estudou = Completou EM & 0.1114 & Iguais\\
+    Nunca estudou = Completou Faculdade & 0.4707 & Iguais\\
+    Incompleto 5.º ano do EF = Completou 5.º ano do EF  & 1.0000 & Iguais\\
+    Incompleto 5.º ano do EF = Completou 9.º ano do EF  & 1.0000 & Iguais\\
+    Incompleto 5.º ano do EF = Completou EM & 1.0000 & Iguais\\
+    Incompleto 5.º ano do EF = Completou Faculdade & 1.0000 & Iguais\\
+    Completo 5.º ano do EF = Completou 9.º ano do EF  & 1.0000 & Iguais\\
+    Completo 5.º ano do EF = Completou EM & 1.0000 & Iguais\\
+    Completo 5.º ano do EF = Completou Faculdade & 1.0000 & Iguais\\
+    Completo 9.º ano do EF = Completou EM & 1.0000 & Iguais\\
+    Completo 9.º ano do EF = Completou Faculdade & 1.0000 & Iguais\\
+    Completou EM = Completou Faculdade & 1.0000 & Iguais\\
+    \bottomrule
+    \end{tabular}
+    \centering
+    \fonte{Amostra de 2000 alunos do 9º ano do SAEB 2017.}
+    \nota{Amostra retiradas de uma amostragem aleatórias simples de tamanho 500.}
+    \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
+    
+\end{table}
+
+
+
+
+
+
+
+
