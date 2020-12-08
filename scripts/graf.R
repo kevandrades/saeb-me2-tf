@@ -163,18 +163,24 @@ StatNormalDensity <- ggproto(
 
 
 
-ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO)) +
-#  geom_density(alpha = 0.7, size = 1, linetype = 1)+
-  geom_line(stat = StatNormalDensity, size = 1, linetype = 1)+
-  geom_vline(data = saeb %>% group_by(LOCALIZACAO) %>% summarise(m = mean(NOTAS), sd = sd(NOTAS)),
-             aes(xintercept = m, color = LOCALIZACAO), size = 1, show.legend = F)+
-  scale_color_manual(values = c("black","red")) +
+ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO, fill = LOCALIZACAO )) +
+  geom_density(alpha = 0.7, size = 0, linetype = 1)+
+# geom_line(aes(fill = LOCALIZACAO),stat = StatNormalDensity, size = 1.5, linetype = 1)+
+#  geom_vline(data = saeb %>% group_by(LOCALIZACAO) %>% summarise(m = mean(NOTAS), sd = sd(NOTAS)),
+#             aes(xintercept = m, color = LOCALIZACAO), size = 1.5, show.legend = F,linetype = 2)+
+
   theme_minimal()+
-  guides(color = guide_legend(title = "Localização")) +
-  labs(title = "Densidade normal da soma das notas dos alunos com base \nna localização da escola",
-       subtitle = "Rural ~N(479, 84.3²), Urbana ~N(512, 86²)",
-       x = "Nota",
-       y = "Densidade")
+  guides(color = NULL) +
+  labs(x = "Nota",
+       y = "Densidade",
+       fill = "Localização",
+       color = "Localização") +
+  scale_fill_manual(values = c("#00B81F","#E08B00") )+
+  scale_color_manual(values = c("#00B81F","#E08B00") )+
+  ggsave('img/loc_notas.pdf',
+         width = 7.6,
+         height = 7,
+         dpi = 500)
 
 
 # Barras (Sexo --- afazeres)
@@ -185,14 +191,18 @@ pct_sexo  <- saeb %>%
   summarise(count = n()) %>% 
   mutate(perc = count/sum(count))
 
-ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc, color = SEXO)) +
-  geom_col(position = "dodge", size = 3, fill =  "white") +
+ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
+  geom_col(position = "dodge", size = 2, alpha = 0.75) +
   labs(fill = "Sexo",
        x = "Tempo de afazeres domésticos",
        y = NULL)+
   scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
-  scale_x_discrete()+
-  theme_minimal()
-
+  theme_minimal()+
+  scale_fill_manual(values = c("#F8766D","#00BBDB"))+
+  ggsave('img/sexo_afazeres.pdf',
+         width = 9,
+         height = 7,
+         dpi = 500)
+  
 
 
