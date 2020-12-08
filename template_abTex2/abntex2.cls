@@ -135,7 +135,7 @@
 % ---
 % Hifenizacao e caracteres especiais portugues-brasil por padrao
 % ---
-\RequirePackage[brazilian]{babel}
+\RequirePackage[brazil]{babel}
 %
 % Nomes constantes do abnTeX2 em portugues (definicoes padroes)
 \newcommand{\folhaderostoname}{Folha de rosto}
