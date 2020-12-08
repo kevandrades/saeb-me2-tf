@@ -1,7 +1,7 @@
 if (!require(tidyverse)) install.packages('tidyverse')
 library(tidyverse)
 
-saeb = fread('data/saeb.csv', encoding = 'UTF-8', # definindo os saeb
+saeb <- fread('data/saeb.csv', encoding = 'UTF-8', # definindo os saeb
                select = c( # escolhendo colunas
                  'LOCALIZACAO',
                  'RACA_COR',
@@ -25,8 +25,8 @@ saeb = fread('data/saeb.csv', encoding = 'UTF-8', # definindo os saeb
       c("Não sei", 
         "Nunca estudou",
         "Não completou o 5.º ano do Ensino Fundamental",
-        "Completou a o 5.º ano, mas não completou a o 9.º ano do Ensino Fundamental",
-        "Completou a o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
+        "Completou o 5.º ano, mas não completou o 9.º ano do Ensino Fundamental",
+        "Completou o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
         "Completou o Ensino Médio, mas não completou a Faculdade",
         "Completou a Faculdade")),
     AFAZERES_DOM = factor(AFAZERES_DOM) %>% fct_relevel(
@@ -46,12 +46,12 @@ ggplot(saeb) +
     geom_boxplot() +
     theme_minimal() +
     labs(x = 'Raça/Cor', y = 'Nota',
-    caption = 'Fonte: SAEB 2017') +
+    caption = 'Fonte: SAEB 2017') 
     ggsave('img/raca_cor_notas.png')
 
 # Escolaridade da mãe por notas
 ggplot(saeb) +
-    aes(color = ESC_MAE, x = (NOTA_LP + NOTA_MT)/2) + 
+    aes(color = sort(ESC_MAE), x = (NOTA_LP + NOTA_MT)/2) + 
     geom_boxplot()  +
     theme_minimal() +
     labs(y = 'Escolaridade da Mãe', x = 'Nota',

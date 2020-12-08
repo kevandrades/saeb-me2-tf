@@ -110,7 +110,7 @@ dados <- dados %>%
       c("Não sei", 
         "Nunca estudou",
         "Não completou o 5.º ano do Ensino Fundamental",
-        "Completou o 5.º ano, mas não completou a o 9.º ano do Ensino Fundamental",
+        "Completou o 5.º ano, mas não completou o 9.º ano do Ensino Fundamental",
         "Completou o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
         "Completou o Ensino Médio, mas não completou a Faculdade",
         "Completou a Faculdade")),

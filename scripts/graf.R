@@ -35,7 +35,7 @@ saeb <- saeb %>%
       c("Não sei", 
         "Nunca estudou",
         "Não completou o 5.º ano do Ensino Fundamental",
-        "Completou o 5.º ano, mas não completou a o 9.º ano do Ensino Fundamental",
+        "Completou o 5.º ano, mas não completou o 9.º ano do Ensino Fundamental",
         "Completou o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
         "Completou o Ensino Médio, mas não completou a Faculdade",
         "Completou a Faculdade")),
@@ -185,10 +185,9 @@ pct_sexo  <- saeb %>%
   summarise(count = n()) %>% 
   mutate(perc = count/sum(count))
 
-ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc, fill = SEXO)) +
-  geom_col(position = "dodge") +
-  labs(title = "Tempo de afazeres domésticos com base na porcetagens dos sexos dos alunos",
-       fill = "Sexo",
+ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc, color = SEXO)) +
+  geom_col(position = "dodge", size = 3, fill =  "white") +
+  labs(fill = "Sexo",
        x = "Tempo de afazeres domésticos",
        y = NULL)+
   scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
