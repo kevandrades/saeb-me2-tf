@@ -120,8 +120,6 @@ StatNormalDensity <- ggproto(
   }
 )
 
-
-
 ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO, fill = LOCALIZACAO )) +
   geom_density(alpha = 0.7, size = 0, linetype = 1)+
 # geom_line(aes(fill = LOCALIZACAO),stat = StatNormalDensity, size = 1.5, linetype = 1)+
@@ -136,7 +134,7 @@ ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO, fill = LOCALIZACAO )) +
        color = "Localização") +
   scale_fill_manual(values = c("#00B81F","#E08B00") )+
   scale_color_manual(values = c("#00B81F","#E08B00") )+
-  ggsave('img/loc_notas.pdf',
+  ggsave('report/img/loc_notas.pdf',
          width = 7.6,
          height = 7,
          dpi = 500)
@@ -158,7 +156,7 @@ ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
   scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
   theme_minimal()+
   scale_fill_manual(values = c("#F8766D","#00BBDB"))+
-  ggsave('img/sexo_afazeres.pdf',
+  ggsave('report/img/sexo_afazeres.pdf',
          width = 9,
          height = 7,
          dpi = 500)
@@ -174,14 +172,14 @@ ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR, fill = RACA_COR)) +
   theme(legend.box = "vertical",
         legend.position="right") +
   guides(color = guide_legend(label.position =  "right",
-                              title="Raça/cor",
+                              title="Raça/Cor",
                               ncol=1,
                               reverse = T),
          fill = guide_legend(label.position =  "right",
-                              title="Raça/cor",
+                              title="Raça/Cor",
                               ncol=1,
                               reverse = T)) +
-    ggsave('img/raca_cor_notas.pdf',
+    ggsave('report/img/raca_cor_notas.pdf',
            width = 7.6,
            height = 7,
            dpi = 500)
@@ -203,7 +201,7 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
                               title="Escolaridade da Mãe",
                               ncol=1,
                               reverse = T)) +
-    ggsave('img/esc_mae_notas.pdf',
+    ggsave('report/img/esc_mae_notas.pdf',
         width = 7.6,
         height = 7,
         dpi = 500)
