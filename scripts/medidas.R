@@ -83,52 +83,14 @@ pacman::p_load(
 
 
 ####  1. ##### Carregando os dados ######
-dados <- fread('data/saeb.csv', encoding = 'UTF-8', # definindo os dados
-  select = c( # escolhendo colunas
-    'LOCALIZACAO',
-    'RACA_COR',
-    'SEXO',
-    'ESC_MAE',
-    'NOTA_LP',
-    'NOTA_MT',
-    'AFAZERES_DOM')) %>%
-  as_tibble() # transformando em tibble
-
-# Fatoramento das colunas com string
-dados <- dados %>%
-  mutate(
-    LOCALIZACAO = factor(LOCALIZACAO),
-    RACA_COR = factor(RACA_COR) %>% fct_relevel( # reordenando fatores
-      c("Não quero declarar",
-        "Amarela",
-        "Branca",
-        "Indígena",
-        "Parda",
-        "Preta")),
-    SEXO = factor(SEXO),
-    ESC_MAE = factor(ESC_MAE) %>% fct_relevel( # Reordenando fatores
-      c("Não sei", 
-        "Nunca estudou",
-        "Não completou o 5.º ano do Ensino Fundamental",
-        "Completou o 5.º ano, mas não completou o 9.º ano do Ensino Fundamental",
-        "Completou o 9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
-        "Completou o Ensino Médio, mas não completou a Faculdade",
-        "Completou a Faculdade")),
-    AFAZERES_DOM = factor(AFAZERES_DOM) %>% fct_relevel(
-      c("Não faço trabalhos domésticos", # Reordenando fatores
-        "Menos de 1 hora", 
-        "Entre 1 e 2 horas", 
-        "Mais de 2 horas, até 3 horas",
-        "Mais de 3 horas")) %>% fct_collapse("Não faz ou faz menos de 1 hora" = c("Não faço trabalhos domésticos",
-                                                                                  "Menos de 1 hora"))
-)
+source('scripts/data.R')
 
 #=================================================#
 
 #### 2. ##### Medidas basicas ######
 
 # Total de alunos para cada fator (Frequencia)
-freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
+freq <- map(select(saeb, -c(NOTA_LP,NOTA_MT)), # Dados
             ~select(data.frame(table(.x)), Freq, variavel= .x ))  # Função
 
 
@@ -140,7 +102,7 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
   for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
   basico_notas[[fator]] <- list()
     for (nota in c("NOTA_MT", "NOTA_LP")){ # Interesse
-      valor <- aggregate(as.formula(paste(nota ,"~" , fator)), dados, summary) # Est. Basicas
+      valor <- aggregate(as.formula(paste(nota ,"~" , fator)), saeb, summary) # Est. Basicas
       basico_notas[[fator]][[nota]] <- data.frame(Grupo = valor[,1],  valor[,2]) # data. frame
     }
   }
@@ -150,7 +112,7 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 
 {basico_afazer <- list()
   for (fator in c("LOCALIZACAO", "RACA_COR", "SEXO")) {
-    basico_afazer[[fator]] <- round(prop.table(table(select(dados,fator,AFAZERES_DOM)),2),2)
+    basico_afazer[[fator]] <- round(prop.table(table(select(saeb,fator,AFAZERES_DOM)),2),2)
   } # Proporção por coluna (2)
 }
 
@@ -163,7 +125,7 @@ freq <- map(select(dados, -c(NOTA_LP,NOTA_MT)), # Dados
 # Para as NOTAS_(LP/MT) testes de normalidade
 
 set.seed(7)
-notas <- select(dados, NOTA_MT, NOTA_LP)
+notas <- select(saeb, NOTA_MT, NOTA_LP)
 
 # P-valores dos testes de Shapiro-Wilk (sw), Shapio-Francia (sf) e Aderson-Darling (ad)
 {testes_adere <- list()
@@ -203,7 +165,7 @@ notas <- select(dados, NOTA_MT, NOTA_LP)
 
 #-------------- Comparação (NOTAS) ---------------#
 # Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
-comp_notas <- select(dados, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
+comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
 
 
 
@@ -238,7 +200,7 @@ pairwise.t.test(comp_notas$NOTA_LP+comp_notas$NOTA_MT, comp_notas$ESC_MAE, p.adj
 #----------- Comparação (AFAZERES_DOM) ----------------#
 # Testes para as relações ESC_MAE, RACA_COR, SEXO, com os AFAZERES_DOM
 
-comp_afr <- select(dados, ESC_MAE, RACA_COR, SEXO, AFAZERES_DOM) %>% # Comparações 
+comp_afr <- select(saeb, ESC_MAE, RACA_COR, SEXO, AFAZERES_DOM) %>% # Comparações 
   mutate(AFAZERES_DOM = AFAZERES_DOM %>% fct_recode("1" = "Não faz ou faz menos de 1 hora",
                                                     "2" = "Entre 1 e 2 horas",
                                                     "3" = "Mais de 2 horas, até 3 horas",
