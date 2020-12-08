@@ -1,71 +1,148 @@
-% ------------------------------------------------------------------------
-% Arquivo: info.sty
-% ------------------------------------------------------------------------
-
-% Aliterações
-\newcommand{\UNB}{Universidade de Brasília}
-\newcommand{\unb}{{\small UnB}}           % Sigla UnB
-\newcommand{\CPAI}{Instituto de Ciências Exatas}
-\newcommand{\cpai}{{\small IE}}         % Sigla CPAI
-\newcommand{\DE}{Departamento de Estatística}
-\newcommand{\de}{{\small DE}}
-\newcommand{\versao}{1}               % Número / código da versão do documento
-\newcommand{\logo}{\centering{\includegraphics[scale = 2]{img/UNBLOGO.png}}}
-
-\newcommand{\projeto}{Saeb 2017}    % Nome do projeto
-
-% Palavras-chave
-\newcommand{\kwords}{1. Saeb 2017. 2. Amostra. 3. Pesquisa.}
-
-% Título do Documento
-\titulo{Relatório de Pesquisa}
-
-% Pesquisador(es) do projeto
-\autor{%
-  Allan Victor Almeida Faria\thanks{\href{mailto:190127180@aluno.unb.br}{190127180@aluno.unb.br}}
-  }
-
-% Local e data
-\local{Brasília, DF}
-\data{Setembro, 2020}
-\instituicao{\UNB\ (\unb)
-  \par
-  \CPAI\ (\cpai)
-  \par
-  \DE\ (\de)
-  }
-
-% Tipo de trabalho
-\tipotrabalho{Relatório de Pesquisa}
-
-% Preâmbulo
-% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração 
-\preambulo{\imprimirtitulo\ do projeto \projeto.}
+% ---
+% Pacotes fundamentais 
+\usepackage{cmap}             % Mapeia as fontes para os caracteres acentuados no pdf
+\usepackage{lmodern}			    % Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		  % Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		  % Indenta o primeiro parágrafo de cada seção.
+\usepackage{color,xcolor}		  % Controle das cores
+\usepackage{graphicx}			    % Inclusão de gráficos
+\usepackage{microtype} 			  % para melhorias de justificação
 
 % ---
+% Pacotes adicionais, especialmente para trabalhar com tabelas
+\usepackage{multicol}         % Mesclagem de colunas em tabelas
+\usepackage{multirow}         % Mesclagem de linhas em tabelas
+\usepackage{longtable}        % Tabelas longas (múltiplas páginas)
+\usepackage{float}            % Melhor controle para objetos flutuantes
+\usepackage{array,
+  booktabs,
+  ragged2e}	                  % Melhor alinhamento em tabelas
+\usepackage{lastpage}         % Conta as páginas do documento
+	
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+\usepackage{lipsum}				    % Para geração de dummy text
 
 % ---
-% Configurações de aparência do PDF final
+% Pacotes de citações
+\usepackage[brazilian,
+  hyperpageref]{backref}	    % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
 
-% alterando o aspecto da cor azul
-
-
-
-% informações do PDF
-\makeatletter
-\hypersetup{
-  %pagebackref=true,
-  pdftitle={\@title}, 
-  pdfauthor={\@author},
-  pdfsubject={\imprimirpreambulo},
-  pdfcreator={Allan},
-  pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
-  colorlinks=true,       		% false: boxed links; true: colored links
-  linkcolor=blue,          	% color of internal links
-  citecolor=blue,        		% color of links to bibliography
-  filecolor=magenta,      		% color of file links
-  urlcolor=blue,
-  bookmarksdepth=4
-}
-\makeatother
 % --- 
+% == CONFIGURAÇÕES DE PACOTES
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% == Escreve em itálico e converte a hifenização automaticamente para o idioma específico
+\newcommand{\english}[1]{\emph{\foreignlanguage{english}{#1}}}
+\newcommand{\french}[1]{\emph{\foreignlanguage{french}{#1}}}
+
+% ---
+% Compila o indice
+\makeindex
+
+% == CABEÇALHO E RODAPÉ
+% Margens da página
+\setulmarginsandblock{3cm}{4cm}{*}
+\setlrmarginsandblock{2.5cm}{2.5cm}{*}
+\checkandfixthelayout
+
+% Altera o espaçamento entre o cabeçalho e o início do texto
+\setlength{\headsep}{1.5cm}
+%\addtolength{\textheight}{0.5cm}
+
+% Cria novos estilos de cabeçalhos e rodapés
+% Cabeçalhos para páginas pré-textuais
+\makepagestyle{pagestyle_cpai_pretextual}
+\makeevenhead{pagestyle_cpai_pretextual}
+{}
+{}
+{\includegraphics{}}
+
+\makeoddhead{pagestyle_cpai_pretextual}
+{}
+{}
+{\includegraphics{}}
+\makeheadrule{pagestyle_cpai_pretextual}{\textwidth}{\normalrulethickness}
+
+% Não há rodapés para páginas pré-textuais
+
+% Cabeçalhos para páginas textuais
+\makepagestyle{pagestyle_cpai}
+\makeevenhead{pagestyle_cpai}
+{}
+{}
+{\includegraphics{}}
+
+\makeoddhead{pagestyle_cpai} %%pagina ímpar ou com oneside
+{}
+{}
+{\includegraphics{img/Unb.PNG}}
+\makeheadrule{pagestyle_cpai}{\textwidth}{\normalrulethickness}
+
+% Rodapés para páginas textuais
+\makeevenfoot{pagestyle_cpai}
+{\sffamily\color{black!60}\tiny\SingleSpacing%
+  Campus Universitário Darcy Ribeiro, Brasília, DF \\[-0.1cm]
+  } 
+{}
+{\sffamily\color{black!60}\tiny\SingleSpacing%
+  Versão \versao \\[-0.1cm]
+  Página \thepage\ de \pageref*{LastPage}}
+
+\makeoddfoot{pagestyle_cpai}
+{\sffamily\color{black!60}\tiny\SingleSpacing%
+  Campus Universitário Darcy Ribeiro, Brasília, DF \\[-0.1cm]
+ } 
+{}
+{\sffamily\color{black!60}\tiny\SingleSpacing%
+  Versão \versao \\[-0.1cm]
+  Página \thepage\ de \pageref*{LastPage}}
+\makefootrule{pagestyle_cpai}{\textwidth}{\normalrulethickness}{-0.6cm}
+
+%----------------------------------------------------------------------
+%% Substitui os comandos \pretextual, \textual e \postextual
+%----------------------------------------------------------------------
+%\let\oldpretextual\pretextual
+%\renewcommand{\pretextual}{%
+%  \oldpretextual%
+%  \pagestyle{pagestyle_cpai_pretextual}%
+%  \aliaspagestyle{chapter}{pagestyle_cpai_pretextual}}
+
+\let\oldtextual\textual
+\renewcommand{\textual}{%
+  \oldtextual%
+  \pagestyle{pagestyle_cpai}%
+  \aliaspagestyle{chapter}{pagestyle_cpai}}
+
+\let\oldpostextual\postextual
+\renewcommand{\postextual}{%
+  \oldpostextual%
+  \pagestyle{pagestyle_cpai}%
+  \aliaspagestyle{chapter}{pagestyle_cpai}}
+
