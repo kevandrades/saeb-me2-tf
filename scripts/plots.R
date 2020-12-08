@@ -41,26 +41,32 @@ saeb <- fread('data/saeb.csv', encoding = 'UTF-8', # definindo os saeb
 
 
 # Raça/Cor por notas
-ggplot(saeb) +
-    aes(x = RACA_COR, y = NOTAS) + 
+ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR)) + 
     geom_boxplot() +
     theme_minimal() +
     labs(x = 'Raça/Cor', y = 'Nota',
-    caption = 'Fonte: SAEB 2017') 
+    caption = 'Fonte: SAEB 2017') +
     ggsave('img/raca_cor_notas.png')
 
 # Escolaridade da mãe por notas
-ggplot(saeb) +
-    aes(color = sort(ESC_MAE), x = (NOTA_LP + NOTA_MT)/2) + 
+ggplot(saeb, aes(color = ESC_MAE, x = NOTAS))+ 
     geom_boxplot()  +
     theme_minimal() +
     labs(y = 'Escolaridade da Mãe', x = 'Nota',
     caption = 'Fonte: SAEB 2017') +
-    theme(legend.position="bottom") +
-    guides(color=guide_legend(
+    theme(legend.box = "vertical",
+          legend.position="bottom",
+          axis.text.y = element_blank()) +
+    guides(color = guide_legend(label.position =  "right",
         title="Escolaridade da Mãe",
-        ncol=1)) +
-    ggsave('img/esc_mae_notas.png',
+        ncol=1,
+        reverse = T)) 
+    ggsave('img/esc_mae_notas.pdf',
         width = 7.6,
         height = 7,
         dpi = 500)
+
+    
+    
+    
+    
