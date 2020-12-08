@@ -1036,6 +1036,10 @@
 % ---
 % Impressão da Capa
 \newcommand{\imprimircapa}{%
+  \begin{figure}[t]
+  \includegraphics[width=3cm]{img/unb_name_bw.jpg}
+  \centering
+  \end{figure}
   \begin{capa}%
     \center
     \ABNTEXchapterfont\large\imprimirautor
