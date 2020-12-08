@@ -167,8 +167,7 @@ ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
 ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR, fill = RACA_COR)) + 
     geom_boxplot(alpha = 0.5) +
     theme_minimal() +
-    labs(x = 'Raça/Cor', y = 'Nota',
-    caption = 'Fonte: SAEB 2017') +
+    labs(x = 'Raça/Cor', y = 'Nota') +
   theme(legend.box = "vertical",
         legend.position="right") +
   guides(color = guide_legend(label.position =  "right",
@@ -188,8 +187,7 @@ ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR, fill = RACA_COR)) +
 ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+ 
     geom_boxplot(alpha = 0.5)  +
     theme_minimal() +
-    labs(y = 'Escolaridade da Mãe', x = 'Nota',
-    caption = 'Fonte: SAEB 2017') +
+    labs(y = 'Escolaridade da Mãe', x = 'Nota') +
     theme(legend.box = "vertical",
           legend.position="bottom",
           axis.text.y = element_blank()) +
