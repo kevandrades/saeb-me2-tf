@@ -1,7 +1,7 @@
 # %%
 from os import chdir, getcwd
-if getcwd()[-4:] != 'data':
-    chdir('./data')
+from re import findall
+chdir(findall('.+saeb\-me2\-tf', getcwd())[0] + '/data')
 
 # %%
 import pandas as pd
