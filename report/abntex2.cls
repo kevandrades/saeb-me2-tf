@@ -1074,7 +1074,10 @@
 \makeatletter
 \newcommand{\folhaderostocontent}{
   \begin{center}
-
+    \begin{figure}[t]
+      \includegraphics[width=3cm]{img/unb_name_bw.jpg}
+      \centering
+    \end{figure}
     %\vspace*{1cm}
     {\ABNTEXchapterfont\large\imprimirautor}
 	
