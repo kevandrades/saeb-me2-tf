@@ -83,7 +83,7 @@ pacman::p_load(
 
 
 ####  1. ##### Carregando os dados ######
-source('scripts/data.R')
+source('scripts/data.R',encoding = 'UTF-8')
 
 #=================================================#
 
