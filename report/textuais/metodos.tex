@@ -7,11 +7,17 @@
 % comandos do abnTeX2 e de LaTeX.
 
 \chapter{Estatísticas}
-Este estudo usa Métodos estatísticos na obtenção e comparação de valores a ponto de poder criar testes de hipóteses no qual é possível afirmar com um grau de certeza o comportamento e uma relação entre os dados.
+Este estudo usa Métodos estatísticos para obtenção e comparação de valores,
+de modo que se possa criar hipóteses que serão testadas, para que seja possível
+afirmar com um grau de certeza o comportamento e uma relação entre as variáveis.
 
 \section{Medidas-Resumo}
-
-As medidas-resumos são a base desse estudo para a compreensão, através de valores, a identidade dos dados, no qual o foco do estudo é obter utilizando métodos e testes a ponto de resumir-los e comparar-los para identificar supostas hipóteses com relação aos dados. É possível assemelhar a matemática compreendida na observação em uma visão de possibilidade válida para o comportamento de tal forma a tentar entender a realidade. Formulas dada por {\citeonline[cap.~2, 3 e 11]{morettin2017estatistica}}:
+As medidas-resumos são a base desse estudo para a compreensão, através de valores,
+a identidade dos dados, no qual o foco do estudo é obter utilizando métodos e testes
+a ponto de resumí-los e compará-los para identificar supostas hipóteses com relação aos dados.
+É possível assemelhar a matemática compreendida na observação em uma visão de possibilidade
+válida para o comportamento de tal forma a tentar entender a realidade. Formulas dada por 
+{\citeonline[cap.~2, 3 e 11]{morettin2017estatistica}}:
 $$x \in X,\forall x \in \{x_1,...,x_n\}$$
 
 \begin{equation}
@@ -39,7 +45,13 @@ Desvio \; Padrão \; Amostral = S = \sqrt{\frac{\sum_{i=1}^{n} (\frac{x_i}{n} - 
 
 \section{Testes de comparação}
 
-Os testes a seguir de comparação propostos para o estudo, tem como objetivo avaliar a relação de duas populações através do teste do T-student (teste T) e para mais populações utilizando os teste de Kruskal-Wallis (Teste K) e o teste de Fisher (ANOVA), no qual presume a independência entre categorias propostas para a analise e avalia diferenças substanciais entre as variáveis relacionadas, com base na amostra do banco de dados dos alunos do 9º ano de 2017.
+Os testes de comparação a seguir, propostos para o estudo, têm como objetivo
+avaliar a relação de duas populações através do teste do t-Student (teste T), ou
+para mais populações utilizando os teste de Kruskal-Wallis (Teste K) e o
+teste de Fisher (ANOVA), no qual se presume a independência entre categorias
+propostas para a análise e avalia diferenças substanciais entre as variáveis
+relacionadas, com base na amostra do banco de dados dos alunos do
+9\textsuperscript{o} ano de 2017.
 
 \subsection{Kruskal-Wallis} 
 
@@ -49,7 +61,7 @@ $$K = \frac{1}{S^2} \sum^r_{j=1} \frac{R^2_i}{n_i} - \frac{n(n+1)^2}{4}$$
 
 \subsection{Fisher}
 
-O famoso teste da analise de variabilidade (ANOVA) dado por \citeonline{fisher1928general}, aplica para os dados considerados como ''normais'' e com a mesma variância, a comparação das médias das populações sendo como iguais.
+O famoso teste da análise de variabilidade (ANOVA) dado por \citeonline{fisher1928general}, aplica para os dados considerados como ''normais'' e com a mesma variância, a comparação das médias das populações sendo como iguais.
 
 \subsubsection{Bartlett}
 
@@ -69,7 +81,7 @@ $$C = 1+ \frac{1}{3(r-1)}\left[\sum_{i=1}^{r} \left( \frac{1}{n_i-1}\right) - \l
 
 
 
-\subsection{T-student}
+\subsection{t-Student}
 
 O T-student \cite{o1908student} tem como base o teste paramétrico, no qual este estudo usa o métodos de comparação de duas populações cujo as variâncias ($S^2$) são iguais. A estatística de teste é:
 
@@ -84,13 +96,22 @@ $$S_p^2 = \frac{(n_X-1)S_X^2 + (n_Y-1)S_Y^2}{n_X + n_Y -2}$$
 
 \chapter{Metodologia}
 
-Este estudo parte do pressuposto de normalidade analisado por outros estudos sobre as notas dos alunos do 9º ano de 2017 do Brasil, referente ao banco de dados do SAEB de 2017 divulgada pelo \citeonline{Saeb2017a)}. Pelo qual esse tem como objetivo relacionar variáveis de uma amostra de 2000 alunos deste banco de dados e analisar possíveis diferenças substanciais através de testes estatísticos.
+Este estudo parte da hipótese de normalidade das notas, analisada por outros estudos
+referentes ao banco de dados do SAEB de 2017 divulgada pelo \citeonline{Saeb2017a)}.
+O objetivo desse estudo é relacionar variáveis de uma amostra de 2000 alunos deste
+banco de dados e analisar possíveis diferenças substanciais através de testes estatísticos.
 
-Nas relações propostas pelo estudo, foi efetuado uma amostragem aleatória simples de 500 alunos desta amostra, no qual relacionou as notas em Matemática com as regiões das escolas e as notas em Língua Portuguesa com o tempo de uso de telas (Televisões, Celulares, Computadores e entre outros) com base nestes alunos.
+Nas relações propostas pelo estudo, foi feita uma junção de três amostras de tamanho 2.000, 
+e os valores em branco foram omitidos, gerando uma amostra de 5.271 observações.
 
-Os testes aplicados utilizam a o pressuposto de normalidade, no qual aplica os testes, de Bartlett (para igualdade de variâncias), de Fisher (para a igualdade na variabilidade das médias) e o teste não paramétrico de Kruskal-Wallis (para a igualdade de posições), com base no fator de correção do P-valor dado por \citeonline{bonferroni1936teoria}. O teste T-Student é usado no pareamento dois a dois para a identificação de desigualdade de médias, utilizando a mesma correção do P-valor.
-
-O P-valor é a base desse estudo para a decisão da hipótese, no qual a confirmação da hipótese nula ($H_0$), é avaliada com um grau de significância (ou confiabilidade), considerado na analise. Se este assumir valores menores que um menos a percentagem de confiança considerada, há evidência de recusar a hipótese $H_0$ \cite[pag. 364]{morettin2017estatistica}. A aplicação dos testes de hipóteses para a analise da amostra de 500 alunos utiliza ferramentas do \textsc{Software R} com pacotes\footnote{Pacotes externos usados para a manipulação dos dados:\textit{readr, tidyverse, fBasics, reshape2, EnvStats, goftest, nortest, MASS e ggplo2}} para a implementação das análises.
+O P-Valor é a base desse estudo para a decisão da hipótese, no qual a confirmação da hipótese nula
+($H_0$) é avaliada com um grau de significância (ou confiabilidade), considerado na análise.
+Se este assumir valores menores que um menos a percentagem de confiança considerada,
+há evidência de recusar a hipótese $H_0$ \cite[pag. 364]{morettin2017estatistica}.
+A aplicação dos testes de hipóteses para a análise da amostra de 5271 alunos utiliza ferramentas
+dos softwares \textsc{R} e \textsc{Python}
+com pacotes\footnote{Pacotes externos usados para a manipulação dos dados:\\\textit{R: tidyverse, data.table, reshape2, patchwork, EnvStats, PMCMR, gridExtra; \\Python: pandas}}
+para a implementação das análises.
 
 
 \begin{table}[htb]
