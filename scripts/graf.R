@@ -242,7 +242,7 @@ ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
         axis.title=element_text(size=14,face="bold")) +
   labs(fill = "Temperatura")
 
-ggsave("heatPlot.png", width = 158*1.5, height = 93*1.5, units = "mm")
+ggsave("report/img/heatPlot.png", width = 158*1.5, height = 93*1.5, units = "mm")
 
 }
 
