@@ -134,11 +134,13 @@ ggplot(saeb, aes(x = NOTAS, color = LOCALIZACAO, fill = LOCALIZACAO )) +
        color = "Localização") +
   scale_fill_manual(values = c("#00B81F","#E08B00") )+
   scale_color_manual(values = c("#00B81F","#E08B00") )+
+  theme(axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold", size = unit(10,"mm")))+
   ggsave('report/img/loc_notas.pdf',
          width = 7.6,
          height = 3,
          dpi = 500)
-
+  
 
 # Barras (Sexo --- afazeres)
 
@@ -154,13 +156,20 @@ ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
        x = "Tempo de afazeres domésticos",
        y = NULL)+
   scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
+  scale_x_discrete(labels = c("Não faz ou faz\nmenos de 1 hora" ,
+                              "Entre 1 e 2 horas",
+                              "Mais de 2 horas,\naté 3 horas",
+                              "Mais de 3 horas"))+
   theme_minimal()+
   scale_fill_manual(values = c("#F8766D","#00BBDB"))+
+  theme(axis.title = element_text(face = "bold",size = unit(14,"mm")),
+        axis.text = element_text(size = unit(10,"mm")),
+        legend.text = element_text(size = unit(9,"mm")),
+        legend.title = element_text(face = "bold",size = unit(12,"mm")))+
   ggsave('report/img/sexo_afazeres.pdf',
          width = 9,
          height = 4,
          dpi = 500)
-  
 
 
 # Raça/Cor por notas
@@ -170,6 +179,15 @@ ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR, fill = RACA_COR)) +
     labs(x = 'Raça/Cor', y = 'Nota') +
   theme(legend.box = "vertical",
         legend.position="right") +
+  scale_x_discrete(labels = c("Não quero\ndeclarar",
+                              "Amarela",
+                              "Branca",
+                              "Indígena",
+                              "Parda",
+                              "Preta"))+
+  theme(axis.text = element_text(size = unit(10,"mm")),
+        axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold", size = unit(9.5,"mm")))+
   guides(color = guide_legend(label.position =  "right",
                               title="Raça/Cor",
                               ncol=1,
@@ -183,6 +201,7 @@ ggplot(saeb, aes(x = RACA_COR, y = NOTAS, color = RACA_COR, fill = RACA_COR)) +
            height = 4,
            dpi = 500)
 
+
 # Escolaridade da mãe por notas
 ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+ 
     geom_boxplot(alpha = 0.5)  +
@@ -191,7 +210,9 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
     theme(legend.box = "vertical",
           legend.position="bottom",
           axis.text.y = element_blank(),
-          legend.title.align = 0.5) +
+          legend.title.align = 0.5,
+          axis.title = element_text(face = "bold", size = unit(10,"mm")),
+          legend.title = element_text(face = "bold", size = unit(9,"mm"))) +
     guides(color = guide_legend(label.position =  "right",
         title="Escolaridade \nda\nMãe",
         ncol=1,
@@ -205,6 +226,7 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
         height = 5,
         dpi = 500)
 
+
 #___________escolaridade da mae pelo tempo de afazeres domesticos
 dados <- saeb
 
@@ -212,19 +234,38 @@ dados <- saeb
 basico_afazer <- round(prop.table(table(select(dados,AFAZERES_DOM,ESC_MAE)),2),2) %>% as.data.frame()
 basico_afazer$legenda <- str_c(basico_afazer$Freq * 100, '%') %>% str_replace('\\.',',')
 
+# Coloca 0 em nas dezenas
+basico_afazer$legenda <- map_if(basico_afazer$legenda, str_length(basico_afazer$legenda) <3, ~paste( "0",.x , sep = "")) %>% unlist()
+
 #grafico
 ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
   geom_tile(aes(fill = Freq), color = "white") +
   scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"))+
-  geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.5,vjust=-1)+
+  geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.3,vjust=-0.7, size = 4.5)+
   ylab("Escolaridade da mãe") +
   xlab("Afazeres domésticos") +
+  scale_y_discrete(labels = c("Não sei" ,
+                              "Nunca estudou",
+                              "Não completou o 5.º ano\ndo Ensino Fundamental",
+                              "Completou o 5.º ano, mas não completou\no 9.º ano do Ensino Fundamental",
+                              "Completou o 9.º ano do Ensino Fundamental,\nmas não completou o Ensino Médio",
+                              "Completou o Ensino Médio,\nmas não completou a Faculdade",
+                              "Completou a Faculdade"))+
+  scale_x_discrete(labels = c("Não faz ou faz\nmenos de 1 hora" ,
+                              "Entre 1 e 2 horas",
+                              "Mais de 2 horas,\naté 3 horas",
+                              "Mais de 3 horas"))+
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.key.width = unit(2,"cm"), 
-        legend.title.align = 0.5)+
+        legend.title.align = 0.5,
+        axis.text = element_text(size = unit(14,"mm")),
+        axis.title = element_text(face = "bold",size = unit(16,"mm")),
+        legend.text = element_text(size = unit(15,"mm")),
+        legend.title = element_text(face = "bold",size = unit(14,"mm"),vjust = 4))+
   labs(fill = "Frequência\npor\nlinha") +
     ggsave('report/img/esc_mae_afazeres.pdf',
          width = 12,
-         height = 5,
+         height = 6,
          dpi = 500)
+
