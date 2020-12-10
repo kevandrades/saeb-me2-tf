@@ -190,13 +190,14 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
     labs(y = 'Escolaridade da Mãe', x = 'Nota') +
     theme(legend.box = "vertical",
           legend.position="bottom",
-          axis.text.y = element_blank()) +
+          axis.text.y = element_blank(),
+          legend.title.align = 0.5) +
     guides(color = guide_legend(label.position =  "right",
-        title="Escolaridade \n        da \n      Mãe",
+        title="Escolaridade \nda\nMãe",
         ncol=1,
         reverse = T),
         fill = guide_legend(label.position =  "right",
-                              title="Escolaridade \n        da \n      Mãe",
+                              title="Escolaridade \nda\nMãe",
                               ncol=1,
                               reverse = T)) +
     ggsave('report/img/esc_mae_notas.pdf',
@@ -205,46 +206,25 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
         dpi = 500)
 
 #___________escolaridade da mae pelo tempo de afazeres domesticos
-
-calorPlot <- function(dados){
-
-  
-#transformando os nomes pro grafico
-dados$ESC_MAE <-  gsub(x = saeb$ESC_MAE,'Não completou a 4.ª série/5.º ano do Ensino Fundamental',
-                       'Fundamental 1 incompleto')
-dados$ESC_MAE <-  gsub(x = saeb$ESC_MAE,"Completou a 4.ª série/5.º ano, mas não completou a 8.ª série/9.º ano do Ensino Fundamental",
-                       'Fundamental 2 incompleto')
-dados$ESC_MAE <-  gsub(x = saeb$ESC_MAE,"Completou a 8.ª série/9.º ano do Ensino Fundamental, mas não completou o Ensino Médio",
-                       'Ensino médio incompleto')
-dados$ESC_MAE <-  gsub(x = saeb$ESC_MAE,"Completou o Ensino Médio, mas não completou a Faculdade",
-                       'Não completou Faculdade')
-
-#ordenando pro grafico
-dados$ESC_MAE <- fct_relevel(saeb$ESC_MAE, "Não sei", "Nunca estudou", "Fundamental 1 incompleto",
-                             "Fundamental 2 incompleto", "Ensino médio incompleto",
-                             "Não completou Faculdade", "Completou a Faculdade")
+dados <- saeb
 
 #criando o banco para o grafico
-basico_afazer <- round(prop.table(table(select(dados,fator,ESC_MAE)),2),2) %>% as.data.frame()
+basico_afazer <- round(prop.table(table(select(dados,AFAZERES_DOM,ESC_MAE)),2),2) %>% as.data.frame()
 basico_afazer$legenda <- str_c(basico_afazer$Freq * 100, '%') %>% str_replace('\\.',',')
 
- #grafico
+#grafico
 ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
   geom_tile(aes(fill = Freq), color = "white") +
-  scale_fill_viridis()+
-  geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.4,vjust=-1)+
+  scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"))+
+  geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.5,vjust=-1)+
   ylab("Escolaridade da mãe") +
   xlab("Afazeres domésticos") +
-  theme_minimal()+
-  theme(legend.title = element_text(size = 10),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size=16),
-        axis.title=element_text(size=14,face="bold")) +
-  labs(fill = "Temperatura")
-
-ggsave("report/img/heatPlot.png", width = 158*1.5, height = 93*1.5, units = "mm")
-
-}
-
-
-calorPlot(saeb)
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.key.width = unit(2,"cm"), 
+        legend.title.align = 0.5)+
+  labs(fill = "Frequência\npor\nlinha") +
+    ggsave('report/img/esc_mae_afazeres.pdf',
+         width = 12,
+         height = 5,
+         dpi = 500)
