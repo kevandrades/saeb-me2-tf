@@ -1,17 +1,19 @@
 # %%
-from os import chdir, getcwd
+from os import chdir, getcwd, listdir
 from re import findall
 chdir(findall('.+saeb\-me2\-tf', getcwd())[0] + '/data')
 
 # %%
 import pandas as pd
 
+#%%
+files = ['samples/' + name for name in listdir('samples')]
+
 # %%
-saeb = (pd.concat([
-    pd.read_csv('190015853.csv'), # reading data...
-    pd.read_csv('190127180.csv'),
-    pd.read_csv('190029498.csv')
-])
+saeb = (
+    pd.concat(
+        [pd.read_csv(file) for file in files]
+    ) #
     .drop_duplicates() # ommiting duplicates
     .dropna() # omitting nas
 )
