@@ -10,39 +10,54 @@
 \chapter{Metodologia}
 
 % Avaliação
-Este documento tem como objetivo analisar fatores sociais de alunos do 9º ano de 2017 do Brasil,
-no qual há pressupostos de possibilidade de influênciar no aprendizado básico destes. O banco de dados
-disponibilizado pelo SAEB de 2017 divulgado pelo \citeonline{Saeb2017a)}, possui variáveis com respeito
-aos alunos e suas notas em Matemática e Língua Portuguesa, através da Prova Brasil de 2017, do censo de 
-escolas públicas e amostras de escolas particulares, entre outras variáveis com respeito a escola e fatores
-sociais destes.
+Este documento visa analisar o aprendizado de alunos do brasileiros no ano de 2017,
+e como fatores sociais podem influenciar nesse aprendizado. Para a análise, serão utilizados dados
+do Sistema de Avaliação da Educação Básica (SAEB) de 2017 divulgado pelo \citeonline{Saeb2017a)}.
+
+A pesquisa é feita por meio de testes e questionários aplicados bienalmente ao na rede pública
+e numa amostra da rede privada. A amostra é amostra composta pelo 5º e 9º anos do ensino fundamental, e também
+pelo 3º ano do ensino médio. Além do desempenho em matemática e língua portuguesa, por meio da prova,
+são coletadas informações a respeito dos alunos, tais como:
+    
+    \begin{itemize}
+        \item Dependência administrativa da escola (se é federal, estadual, municipal ou privada);
+        \item Grau de escolaridade dos pais; 
+        \item Taxas de reprovação;
+        \item Tempo diário com afazeres domésticos;
+        \item Tempo diário de uso de telas (tais como computadores, celulares e televisões);
+        \item Se o estudante trabalha;
+        \item Quais as suas perspectivas;
+        \item Acesso a computadores;
+        \item Raça/cor.
+    \end{itemize}
+
 
 % Amostra
-A análise parte de uma amostragem aleatória simples de 5271 alunos do 9º deste banco de dados, e relacionar 
-fatores como raça/cor e sexo dos alunos e localizações das escolas e escolaridade da mãe destes, com as variáveis
-a serem explicadas como a soma destas notas e o tempo de afazes domésticos realizados por dia com base nos alunos.
+A análise parte de uma amostra aleatória simples de 5.271 alunos do 9º desse banco de dados.
 
-% Relacao com afazeres
-O estudo relaciona sobre os alunos a raça/cor, a escolaridade da mãe e o sexo com o tempo de afazeres domésticos, 
-para observar se há indícios de diferenças sociais entre a disponibilidade de tempo em casa para outras possíveis 
-tarefas na formação do aprendizado básico. Para estas relações, os testes estatísticos não paramétricos são apropriados,
-no qual utiliza-se o teste de \citeonline{kruskal1952use} para fatores com mais de duas categorias (Teste K), e o
-teste de \citeonline{mann1947test} para a comparação dois a dois das categorias (Teste W). Estes testes avaliam as
-distribuições das informações com base na posição, para comparar as distâncias significativas entre as categorias.
+As variáveis resposta serão a soma das notas em língua portuguesa e matemática e o tempo de afazeres domésticos realizados por dia por cada aluno.
 
 % Relacao com notas
-O estudo também relaciona a raça/cor, a escolaridade da mãe e as localizações das escolas com a soma das notas em Matemática 
-e Língua Portuguesa com base nos alunos, no intuito de avaliar a influência destas variáveis explicativas sobre o desempenho
-total na Prova Brasil. Para avaliar estas relações, um estudo prévio foi realizado com amostras de tamanhos 30, 50 e 100 dos 5271
-alunos, no qual o com os testes \citeonline{anderson1954test}, \citeonline{shapiro1965analysis} e \citeonline{shapiro1972approximate}
-foi possível afirmar que as distribuições das notas são normais e os resultados destes não serão abordados neste documento. Os testes 
-apropriados para avaliar estas relações, são testes paramétricos, no qual aplica o teste ANOVA dado por \citeonline{fisher1928general} para 
-avaliar os fatores com mais de 2 categorias e o teste T para as comparações dois a dois \cite{o1908student}.
+Como variáveis explicativas para a soma das notas, o estudo relaciona a raça/cor, a escolaridade da mãe e as localizações das escolas,
+e avalia o quanto essas variáveis influenciam no desempenho na Prova Brasil. Para avaliar estas relações, um estudo prévio foi realizado
+com amostras de tamanhos 30, 50 e 100 dos 5271 alunos, no qual o com os testes \citeonline{anderson1954test}, \citeonline{shapiro1965analysis}
+e \citeonline{shapiro1972approximate}, onde se concluiu que as distribuições das notas são normais. Este resultado será utilizado para atender
+os testes paramétricos que pressupõem normalidade dos dados. Os testes a serem aplicados serão o teste ANOVA dado por \citeonline{fisher1928general} para 
+avaliar os fatores com mais de 2 categorias e o teste t-Student para as comparações dois a dois \cite{o1908student}.
 Estes testes utilizam das médias ($\mu$) de cada grupo para avaliar as distâncias significativas entre eles, no qual previamente avalia se as
 variâncias ($\sigma^2$) destes são iguais (Teste B), através do teste proposto por \citeonline{bartlett1954note}.
 
+% Relacao com afazeres
+Quanto ao tempo gasto com afazeres domésticos, as variáveis a serem relacionadas são a raça/cor, a escolaridade da mãe
+e o sexo, para observar se há indícios de diferenças sociais entre a disponibilidade de tempo em casa para outras possíveis 
+tarefas na formação do aprendizado básico. Para estas relações, os testes estatísticos não paramétricos são apropriados,
+no qual utiliza-se o teste de \citeonline{kruskal1952use} para fatores com mais de duas categorias (Teste K), e o
+teste de \citeonline{mann1947test} para a comparação dois a dois das categorias (Teste W). Estes testes avaliam as
+distribuições das informações com base na posição, para verificar se as distâncias entre as categorias são significativas.
+
+
 % Avaliacao dos testes
-Para a avaliar os resultados dos testes, foi proposto o uso da correção de \citeonline{bonferroni1936teoria}, no qual utiliza-se para os 
-testes com mais de duas categorias. Se houver a evidência de rejeitar igualdade destas, a comparação dois a dois é efetuada e a mesma correção
-é utilizada. Esta correção é sobre o P-valor, cujo valor é avaliado em uma escala de significância, adotado por este estudo
-como uma confiança de 95\%, no que diz sobre aceitar a hipótese $H_0$.
+Para a avaliar os resultados dos testes, foi proposto o uso da correção de \citeonline{bonferroni1936teoria}, utilizada para os 
+testes com mais de duas categorias. Se houver a evidências para rejeitar igualdade destas, a comparação dois a dois é efetuada e a mesma correção
+é utilizada. Esta correção é sobre o p-valor, que é avaliado em uma escala de significância, adotado por este estudo
+como uma confiança de 95\%, no que diz sobre aceitar a hipótese nula $H_0$.
