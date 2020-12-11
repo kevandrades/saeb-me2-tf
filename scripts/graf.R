@@ -153,7 +153,7 @@ pct_sexo  <- saeb %>%
 ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
   geom_col(position = "dodge", size = 2, alpha = 0.75) +
   labs(fill = "Sexo",
-       x = "Tempo de afazeres domésticos",
+       x = "Tempo em afazeres domésticos",
        y = NULL)+
   scale_y_continuous(breaks = seq(0,1,.25), labels = scales::percent(seq(0,1,.25)),limits = c(0,1))+
   scale_x_discrete(labels = c("Não faz ou faz\nmenos de 1 hora" ,
@@ -163,8 +163,8 @@ ggplot(pct_sexo, aes(x = AFAZERES_DOM,y = perc,fill = SEXO)) +
   theme_minimal()+
   scale_fill_manual(values = c("#F8766D","#00BBDB"))+
   theme(axis.title = element_text(face = "bold",size = unit(14,"mm")),
-        axis.text = element_text(size = unit(10,"mm")),
-        legend.text = element_text(size = unit(9,"mm")),
+        axis.text = element_text(size = unit(11,"mm")),
+        legend.text = element_text(size = unit(10,"mm")),
         legend.title = element_text(face = "bold",size = unit(12,"mm")))+
   ggsave('report/img/sexo_afazeres.pdf',
          width = 9,
@@ -243,7 +243,7 @@ ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
   scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"))+
   geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.3,vjust=-0.7, size = 4.5)+
   ylab("Escolaridade da mãe") +
-  xlab("Afazeres domésticos") +
+  xlab("Tempo em afazeres domésticos") +
   scale_y_discrete(labels = c("Não sei" ,
                               "Nunca estudou",
                               "Não completou o 5.º ano\ndo Ensino Fundamental",

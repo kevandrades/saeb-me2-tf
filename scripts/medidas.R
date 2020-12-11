@@ -157,7 +157,7 @@ notas <- select(saeb, NOTA_MT, NOTA_LP)
 # RD || RI + Loc --- Notas 
 #  RD & RI + Raça_cor --- Notas e Afazeres
 #       RD + Esc_mae --- Notas e Afazeres
-#       RI + sexo --- Afazeres
+#       RI + sexo --- Notas e Afazeres
 # 
 # ------------------------------------------------#
 
@@ -165,7 +165,7 @@ notas <- select(saeb, NOTA_MT, NOTA_LP)
 
 #-------------- Comparação (NOTAS) ---------------#
 # Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
-comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
+comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE,SEXO, NOTA_MT, NOTA_LP)
 
 
 
@@ -174,7 +174,7 @@ comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE, NOTA_MT, NOTA_LP)
 
 # P-valores para as realções da LP + MT, (Todas tiveram relação!!! [RA 95%])
 {testes_notas_mais <- list()
-  for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE")) { # Fator
+  for (fator in c("LOCALIZACAO","RACA_COR","ESC_MAE","SEXO")) { # Fator
     testes_notas_mais[[fator]][["Bartlett"]] <- bartlett.test(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas)$p.value
     testes_notas_mais[[fator]][["ANOVA"]] <-  summary(aov(as.formula(paste("(NOTA_LP + NOTA_MT) ~", fator)), comp_notas))[[1]][["Pr(>F)"]][1]
   }

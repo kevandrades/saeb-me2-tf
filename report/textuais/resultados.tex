@@ -3,41 +3,53 @@
 
 \chapter{Comparações}
 
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblaba
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblaba
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblabal
-albalblablablalbla
+As relações colocadas por este documento, são avaliadas como 
+fatores sociais que podem influênciar no meio escolar sobre a 
+aquisição do conhecimento básico do 9º ano. Dentre as variáveis
+escolhida por este estudo, as analises sociais são fundamentadas
+com relação ao aluno, o sexo, a raça/cor, a escolaridade da mãe e 
+a localização da escola. Para avaliar estes fatores, foi explorado
+o tempo gasto em afazeres domésticos diariamente no intuito de medir
+a disponibilidade do aluno em casa, e a soma das notas, Matemática e
+Língua Portuguesa da Prova Brasil, para avaliar se o desempenho médio é 
+afetado por alguma destas relações.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AFAZERES_DOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tempo de afazeres domésticos}
+\section{Tempo em afazeres domésticos}
 
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblaba
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblaba
-blablalbalbalbalbalbalblablalbbbbbblbalbalbalblalbalbalblalbalblabal
-albalblablablalbla
+O tempo em afazeres domésticos, priva a disponibilidade dos alunos à 
+tarefas do dia a dia, que por sua vez, grande parte não exerce o processo 
+de conhecimento da educação básica.
 
+As relações sociais propostas para avaliar este interesse, dentre elas,
+destaca-se a proporção de alunos do sexo Feminino em exercer mais tempo nestes
+afazeres, pelo menos 60\% destes o representam, em cada tempo, de no mínimo uma 
+hora, veja na \autoref{sexo_afazeres}. Ao deparar com a escolaridade da mãe,
+a proporção de alunos que exercem esses afazeres, para cada nível escolar
+completo dela, há 70\% localizado entre os que não faz ou faz até 2 horas,
+veja na \autoref{esc_mae_afazeres}.
 
 %%%%%%%%%%%%%%%%%%%%%%% Graficos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-%%%%% Gráfico de Sexo por afazeres_domesticos
+%%%%% Gráfico de Escolaridade da mãe por afazeres_domesticos
 \begin{figure}[h]
-    \caption{Proporção por sexo de tempos de afazeres domésticos por parte
-    dos alunos.}
+    \caption{Proporção total por nível de escolaridade da mãe
+    com base no tempo de afazeres dos alunos.\label{esc_mae_afazeres}}
     \begin{center}
-        \includegraphics[width=16cm]{img/sexo_afazeres.pdf}
+        \includegraphics[width=16cm]{img/esc_mae_afazeres.pdf}
     \end{center}
     \fonte{Amostra de 5271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
 \end{figure}
 
-%%%%% Gráfico de Escolaridade da mãe por afazeres_domesticos
+%%%%% Gráfico de Sexo por afazeres_domesticos
 \begin{figure}[h]
-    \caption{Proporção por total de cada categoria da escolaridade da mãe
-    com base no tempo de afazeres sobre os alunos.}
+    \caption{Proporção por sexo de tempos em afazeres domésticos por parte
+    dos alunos.\label{sexo_afazeres}}
     \begin{center}
-        \includegraphics[width=16cm]{img/esc_mae_afazeres.pdf}
+        \includegraphics[width=16cm]{img/sexo_afazeres.pdf}
     \end{center}
     \fonte{Amostra de 5271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
@@ -58,13 +70,13 @@ albalblablablalbla
         \midrule \midrule
         K & $\mu_{Raça/Cor}$ iguais & 0.369 & Aceita\\
         K & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
-        K & $\mu_M = \mu_F$ iguais & Aprox. 0 & Rejeita\\
+        W & $\mu_M = \mu_F$ iguais & Aprox. 0 & Rejeita\\
         \bottomrule
         \end{tabular}
         \fonte{Amostra de 5271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
         \nota{Amostra retiradas de uma amostragem aleatórias simples.}
         \nota[Anotações]{Os subíndices M e F refere-se aos sexos Masculino e Feminino
-        dos alunos respectivamente. O Aprox. 0 refere-se à algum número muito pequeno considerado
+        dos alunos respectivamente e Esc(mãe) diz respeito a escolaridade da mãe destes. O Aprox. 0 refere-se à algum número muito pequeno considerado
          por este estudo aproximadamente zero.}
 \end{table}
 
@@ -178,15 +190,18 @@ albalblablablalbla
     B & $\sigma_R^2 = \sigma_U^2$ & 0.503 & Aceita\\
     B & $\sigma_{Raça/Cor}^2$ iguais & 0.265 & Aceita\\
     B & $\sigma_{Esc(mãe)}^2$ iguais & 0.132 & Aceita\\
-    ANOVA & $\mu_R^2 = \mu_U^2$ iguais & Aprox. 0 & Rejeita\\
+    T & $\mu_R = \mu_U$ iguais & Aprox. 0 & Rejeita\\
+    T & $\mu_M = \mu_D$ & 0.905 & Aceita\\
     ANOVA & $\mu_{Raça/Cor}$ iguais & Aprox. 0 & Rejeita\\
     ANOVA & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
     \bottomrule
     \end{tabular}
     \fonte{Amostra de 5271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
     \nota{Amostra retiradas de uma amostragem aleatórias simples.}
-    \nota[Anotações]{Os subíndices $R$ e $U$ refere-se as localizações
-                    das escolas rurais e urbanas respectivamente. O Aprox. 0 refere-se à algum número 
+    \nota[Anotações]{Os subíndices, com base nos alunos, $R$ e $U$ refere-se as localizações
+                    das escolas rurais e urbanas, M e F sobre os sexos Masculino e Feminino
+                    respectivamente e Esc(mãe) diz respeito a escolaridade da mãe. 
+                    O Aprox. 0 refere-se à algum número 
                     muito pequeno considerado por este estudo aproximadamente zero.}
 \end{table}
 
