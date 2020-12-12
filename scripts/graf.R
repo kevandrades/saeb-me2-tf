@@ -240,7 +240,8 @@ basico_afazer$legenda <- map_if(basico_afazer$legenda, str_length(basico_afazer$
 #grafico
 ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
   geom_tile(aes(fill = Freq), color = "white") +
-  scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"))+
+  scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"),
+  direction = -1)+
   geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.3,vjust=-0.7, size = 4.5)+
   ylab("Escolaridade da mãe") +
   xlab("Tempo em afazeres domésticos") +
