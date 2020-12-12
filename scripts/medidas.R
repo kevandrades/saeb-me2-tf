@@ -230,5 +230,11 @@ wilcox.test(AFAZERES_DOM ~ SEXO, comp_afr) # Tanto faz utilizar
 # Em media o sexo feminino faz por mais tempo afazeres domesticos que o sexo masculino
 comp_afr %>% group_by(SEXO) %>% summarise(media = mean(AFAZERES_DOM))
 
-
+# Médias das notas por localização
+saeb %>%
+  select(NOTAS, LOCALIZACAO) %>%
+  group_by(LOCALIZACAO) %>%
+  mutate(media = mean(NOTAS)) %>%
+  select(-NOTAS) %>%
+  unique()
 
