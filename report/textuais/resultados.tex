@@ -6,16 +6,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AFAZERES_DOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tempo em afazeres domésticos}
-Dado que o tempo gasto com afazeres domésticos pode privar um aluno
-de atividades educacionais, foram feitas análises de diferenças entre
-esses tempos.
+O tempo gasto com afazeres domésticos pode privar o aluno de exercer o conhecimento
+do ensino básico. Foram feitas análises sociais com base nas diferenças entre os 
+períodos de tempo gastos diariamente nestas atividades.
 
-A Figura \ref{sexo_afazeres} mostra como se distribuem esses tempos em cada sexo.
+A \autoref{sexo_afazeres} apresenta como se distribuem estes períodos em relação ao sexo
+do aluno, no qual estudantes do sexo feminino tendem a gastar mais tempo com atividades
+domésticas. O único período em que o sexo feminino teve menos representatividade foi a 
+categoria que menos tempo diário é gasto com atividades domésticas, ''Não faz ou faz
+menos de 1 hora''.
+Para os períodos em que pelo menos uma hora por dia é gasta, o sexo feminino
+representa no mínimo 60\% de todos os indivíduos, o que pode indicar que a proporção 
+de estudantes do sexo masculino possui mais disponibilidade de tempo em casa para estudos.
+
 %%%%% Gráfico de Sexo por afazeres_domesticos
 \begin{figure}[h]
     \label{sexo_afazeres}
     \caption{Proporção por sexo de tempo em afazeres domésticos por parte
-    dos alunos.}
+    dos alunos.\label{sexo_afazeres}} % Pra fazer ref, tem q estar no caption
     \begin{center}
         \includegraphics[width=16cm]{img/sexo_afazeres.pdf}
     \end{center}
@@ -23,16 +31,13 @@ A Figura \ref{sexo_afazeres} mostra como se distribuem esses tempos em cada sexo
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
 \end{figure}
 
-É fácil observar que estudantes do sexo feminino tendem a gastar mais tempo com atividades
-domésticas. A única categoria em que o sexo feminino teve menos representatividade foi
-justamente a categoria onde menos tempo diário é gasto com atividades domésticas.
-Para todas as outras categorias, onde mais de uma hora por dia é gasta, o sexo feminino
-representa pelo menos 60\% de todos os indivíduos, o que indica que estudantes de
-sexo masculino têm mais disponibilidade de tempo para estudo.
 
-
-%%%%%%%%%%%%%%%%%%%%%%% Graficos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+Ao comparar os períodos de tempo nestes afazeres com o nível escolaridade da mãe,
+\autoref{esc_mae_afazeres}, a proporção de alunos que exercem estas atividades, para
+cada nível escolar da  mãe, há pelo menos 70\% localizado entre os que 
+não fazem ou fazem até 2 horas.
+
 %%%%% Gráfico de Escolaridade da mãe por afazeres_domesticos
 \begin{figure}[h]
     \caption{Proporção total por nível de escolaridade da mãe
@@ -44,10 +49,32 @@ sexo masculino têm mais disponibilidade de tempo para estudo.
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
 \end{figure}
 
-Ao comparar com a escolaridade da mãe, a proporção de alunos que exercem esses afazeres,
-para cada nível escolar, há 70\% localizado entre os que não fazem ou fazem até 2 horas.
 %%%%%%%%%%%%%%%%%%%%%%% Tabelas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+%%%%% Tabela dos testes paras relações com afazeres domesticos
+
+\begin{table}[htb]
+    \caption{Testes de igualdade na variabilidade sobre as relações 
+            com o tempo de afazeres domésticos por parte dos alunos.}
+            \label{tab:af_var}
+        \centering
+        \begin{tabular}{cccc}
+        \toprule
+        Teste & $H_0$& P-valor & Decisão de $H_0$ (95\%)\\
+        \midrule \midrule
+        K & $\mu_{Raça/Cor}$ iguais & 0.369 & Aceita\\
+        K & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
+        W & $\mu_M = \mu_F$ iguais & Aprox. 0 & Rejeita\\
+        \bottomrule
+        \end{tabular}
+        \fonte{Amostra de 5.271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
+        \nota{Amostra retirada de uma amostragem aleatória simples.}
+        \nota[Anotações]{Os subíndices M e F referem-se, respectivamente, aos sexos Masculino e Feminino
+        dos alunos. Esc (mãe) diz respeito à escolaridade da mãe destes. O Aprox. 0 refere-se a um número
+        muito pequeno considerado por este estudo aproximadamente zero.}
+\end{table}
 
 \newpage
 %%%%% Tabela de comparação da escolaridade da mãe com afazeres domesticos
@@ -86,36 +113,7 @@ com base na escolaridade das mães dos alunos.}
     \fonte{Amostra de 5.271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
     \nota{Amostra retirada de uma amostragem aleatória simples.}
     \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
-    
 \end{table}
-
-\newpage
-%%%%% Tabela dos testes paras relações com afazeres domesticos
-A Tabela \ref{tab:af_var} mostra resultados dos testes de
-igualdade nas variabilidades dos tempos gastos com atividades domésticas entre raças,
-escolaridade da mãe e sexos.
-\begin{table}[htb]
-    \caption{Testes de igualdade na variabilidade sobre as relações 
-            com o tempo de afazeres domésticos por parte dos alunos.}
-            \label{tab:af_var}
-        \centering
-        \begin{tabular}{cccc}
-        \toprule
-        Teste & $H_0$& P-valor & Decisão de $H_0$ (95\%)\\
-        \midrule \midrule
-        K & $\mu_{Raça/Cor}$ iguais & 0.369 & Aceita\\
-        K & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
-        W & $\mu_M = \mu_F$ iguais & Aprox. 0 & Rejeita\\
-        \bottomrule
-        \end{tabular}
-        \fonte{Amostra de 5.271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
-        \nota{Amostra retirada de uma amostragem aleatória simples.}
-        \nota[Anotações]{Os subíndices M e F referem-se, respectivamente, aos sexos Masculino e Feminino
-        dos alunos. Esc (mãe) diz respeito à escolaridade da mãe destes. O Aprox. 0 refere-se a um número
-        muito pequeno considerado por este estudo aproximadamente zero.}
-\end{table}
-
-
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -217,10 +215,11 @@ onde a maior nota registrada vem da parte de um aluno cuja mãe completou a facu
     Teste & $H_0$& P-valor & Decisão de $H_0$ (95\%)\\
     \midrule \midrule
     B & $\sigma_R^2 = \sigma_U^2$ & 0.503 & Aceita\\
+    B & $\sigma_M^2 = \sigma_F^2$ & 0.002 & Rejeita\\
     B & $\sigma_{Raça/Cor}^2$ iguais & 0.265 & Aceita\\
     B & $\sigma_{Esc(mãe)}^2$ iguais & 0.132 & Aceita\\
-    T & $\mu_R = \mu_U$ iguais & Aprox. 0 & Rejeita\\
-    T & $\mu_M = \mu_D$ & 0.905 & Aceita\\
+    T & $\mu_R = \mu_U$ & Aprox. 0 & Rejeita\\
+    T & $\mu_M = \mu_F$ & 0.905 & Aceita\\
     ANOVA & $\mu_{Raça/Cor}$ iguais & Aprox. 0 & Rejeita\\
     ANOVA & $\mu_{Esc(mãe)}$ iguais & Aprox. 0 & Rejeita\\
     \bottomrule

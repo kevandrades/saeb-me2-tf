@@ -25,7 +25,7 @@ pacman::p_load(
 # RD || RI + Loc --- Notas 
 #  RD & RI + Raça_cor --- Notas e Afazeres
 #       RD + Esc_mae --- Notas e Afazeres
-#       RI + sexo --- Afazeres
+#       RI + Sexo --- Notas e Afazeres
 # 
 #=================================================#
 # 1. | Carregando dados 
@@ -164,8 +164,8 @@ notas <- select(saeb, NOTA_MT, NOTA_LP)
 
 
 #-------------- Comparação (NOTAS) ---------------#
-# Testes para as relações LOCALIZACAO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
-comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE,SEXO, NOTA_MT, NOTA_LP)
+# Testes para as relações LOCALIZACAO, SEXO, RACA_COR, ESC_MAE, com as NOTAS_(LP/MT)
+comp_notas <- select(saeb, LOCALIZACAO, SEXO,  RACA_COR, ESC_MAE,SEXO, NOTA_MT, NOTA_LP)
 
 
 
@@ -180,6 +180,8 @@ comp_notas <- select(saeb, LOCALIZACAO, RACA_COR, ESC_MAE,SEXO, NOTA_MT, NOTA_LP
   }
 }
 
+# Teste para o sexo com sigma diferente
+t.test(NOTA_LP + NOTA_MT ~ SEXO, comp_notas, var.equal = FALSE)
 
 # Comparação (dois a dois) para os testes das realções da LP + MT
 
@@ -218,7 +220,7 @@ kruskal.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Mesmo p-valor para 2 categoria
 kruskal.test(AFAZERES_DOM ~ ESC_MAE, comp_afr) 
 
 # Comparação 2 a 2
-pairwise.wilcox.test(comp_afr$AFAZERES_DOM, comp_notas$ESC_MAE, p.adjust.method = "b")
+pairwise.wilcox.test(comp_afr$AFAZERES_DOMs, comp_notas$ESC_MAE, p.adjust.method = "b")
 
 
 ## SEXO --- AFAZERES_DOM ##

@@ -242,7 +242,8 @@ ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
   geom_tile(aes(fill = Freq), color = "white") +
   scale_fill_viridis_b(labels = c("10%","20%","40%","40%","50%"),
   direction = -1)+
-  geom_text(data=basico_afazer,aes(label=legenda), color="white", hjust = -1.3,vjust=-0.7, size = 4.5)+
+  geom_label(data=basico_afazer,aes(label=legenda), color="white",fill = "black",
+             hjust = -0.7,vjust=0.1, size = 5)+
   ylab("Escolaridade da mãe") +
   xlab("Tempo em afazeres domésticos") +
   scale_y_discrete(labels = c("Não sei" ,
@@ -261,9 +262,9 @@ ggplot(basico_afazer, aes(AFAZERES_DOM,ESC_MAE)) +
         legend.key.width = unit(2,"cm"), 
         legend.title.align = 0.5,
         axis.text = element_text(size = unit(14,"mm")),
-        axis.title = element_text(face = "bold",size = unit(16,"mm")),
+        axis.title = element_text(face = "bold",size = unit(17,"mm")),
         legend.text = element_text(size = unit(15,"mm")),
-        legend.title = element_text(face = "bold",size = unit(14,"mm"),vjust = 4))+
+        legend.title = element_text(face = "bold",size = unit(15,"mm"),vjust = 4))+
   labs(fill = "Frequência\npor\nlinha") +
     ggsave('report/img/esc_mae_afazeres.pdf',
          width = 12,
