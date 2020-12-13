@@ -384,9 +384,9 @@
 	               \and\boolean{ABCIauto-abntoptions}}
 	   {
 	   % this system of checking is not good...
-	    \IfSubStringInString{abntex2-options}{#1}
+	    \IfSubStringInString{bib/abntex2-options}{#1}
 	      {\if@filesw\immediate\write\@auxout{\string\bibdata{#1}}\fi}
-	      {\if@filesw\immediate\write\@auxout{\string\bibdata{abntex2-options,#1}}\fi}
+	      {\if@filesw\immediate\write\@auxout{\string\bibdata{bib/abntex2-options,#1}}\fi}
 	      }
 	   {
 	    \if@filesw
