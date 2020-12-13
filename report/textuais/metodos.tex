@@ -6,27 +6,26 @@
 % Este capítulo, utilizado por diferentes exemplos do abnTeX2, ilustra o uso de
 % comandos do abnTeX2 e de LaTeX.
 
-
 \chapter{Metodologia}
 % Avaliação
 Este documento tem como objetivo analisar os fatores sociais de alunos brasileiros do 9º ano de 2017,
-no qual avalia possibilidades de diferenças no desempenho do aprendizado básico destes.
+sobre os quais avalia possibilidades de diferenças no desempenho do aprendizado básico destes.
 Para a análise, serão utilizados dados do Sistema de Avaliação da Educação Básica (SAEB) de 2017 
-divulgado pelo \citeonline{Saeb2017a)}, que por meio de testes, no qual avalia o desempenho em Matemática e Língua Portuguesa,
-e questionários sobre fatores sociais de alunos, professores e  sobre a escola, aplicados bienalmente em redes públicas
-e amostras de escolas privadas, sobre turmas do 5º e 9º anos do ensino fundamental e 
-3º ano do ensino médio.
+divulgado pelo \citeonline{Saeb2017a)}, que por meio de testes e questionários sobre fatores sociais de
+alunos, professores e sobre a escola, aplicados bienalmente em redes públicas
+e amostras de escolas privadas sobre turmas do 5º e 9º anos do ensino fundamental e 
+3º ano do ensino médio, avalia o desempenho em Matemática e Língua Portuguesa.
 
 % Amostra
-Esta análise parte de uma amostragem aleatória simples de 5271 alunos deste banco de dados, e relacionar 
+Esta análise parte de uma amostragem aleatória simples de 5.271 alunos deste banco de dados, e relaciona 
 fatores como raça/cor e sexo dos alunos e localizações das escolas e escolaridade da mãe destes, com as variáveis
-a serem explicadas como a soma destas notas e o tempo de afazes domésticos realizados por dia com base nos alunos.
+a serem explicadas como a soma destas notas e o tempo de afazeres domésticos realizados por dia com base nos alunos.
 
 % Relacao com notas
 Como variáveis explicativas para a soma das notas, o estudo relaciona a raça/cor, a escolaridade da mãe e as localizações das escolas,
 e avalia o quanto essas variáveis influenciam no desempenho na Prova Brasil. Para avaliar estas relações, um estudo prévio foi realizado
-com amostras de tamanhos 30, 50 e 100 dos 5.271 alunos, no qual o com os testes \citeonline{anderson1954test}, \citeonline{shapiro1965analysis}
-e \citeonline{shapiro1972approximate}, onde se concluiu que as distribuições das notas são normais. Este resultado será utilizado para atender
+com amostras de tamanhos 30, 50 e 100 dos 5.271 alunos em que, com os testes \citeonline{anderson1954test}, \citeonline{shapiro1965analysis}
+e \citeonline{shapiro1972approximate}, se concluiu que as distribuições das notas são normais. Este resultado será utilizado para atender
 os testes paramétricos que pressupõem normalidade dos dados. Os testes a serem aplicados serão o teste ANOVA dado por \citeonline{fisher1928general} para 
 avaliar os fatores com mais de 2 categorias e o teste t-Student para as comparações dois a dois \cite{o1908student}.
 Estes testes utilizam das médias ($\mu$) de cada grupo para avaliar as distâncias significativas entre eles, no qual previamente avalia se as
@@ -36,13 +35,12 @@ variâncias ($\sigma^2$) destes são iguais (Teste B), através do teste propost
 Quanto ao tempo gasto com afazeres domésticos, as variáveis a serem relacionadas são a raça/cor, a escolaridade da mãe
 e o sexo, para observar se há indícios de diferenças sociais entre a disponibilidade de tempo em casa para outras possíveis 
 tarefas na formação do aprendizado básico. Para estas relações, os testes estatísticos não paramétricos são apropriados,
-no qual utiliza-se o teste de \citeonline{kruskal1952use} para fatores com mais de duas categorias (Teste K), e o
+e utiliza-se o teste de \citeonline{kruskal1952use} para fatores com mais de duas categorias (Teste K), e o
 teste de \citeonline{mann1947test} para a comparação dois a dois das categorias (Teste W). Estes testes avaliam as
 distribuições das informações com base na posição, para verificar se as distâncias entre as categorias são significativas.
 
-
 % Avaliacao dos testes
 Para avaliar os resultados dos testes, foi proposto o uso da correção de \citeonline{bonferroni1936teoria} para os 
-testes com mais de duas categorias. Se houver a evidências para rejeitar igualdade destas, a comparação dois a dois é efetuada e a mesma correção
-é utilizada. Esta correção é sobre o p-valor, que é avaliado em uma escala de significância, adotado por este estudo
-como uma confiança de 95\%, no que diz sobre aceitar a hipótese nula $H_0$.
+testes com mais de duas categorias. Se houver evidências para rejeitar igualdade destas, a comparação dois a dois é
+efetuada e a correção é utilizada. Esta correção é sobre o p-valor, que é avaliado em uma escala de significância,
+adotado por este estudo como uma confiança de 95\%, no que diz respeito a aceitar a hipótese nula $H_0$.
