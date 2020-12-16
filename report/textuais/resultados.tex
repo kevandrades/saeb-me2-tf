@@ -201,7 +201,7 @@ onde a maior nota registrada vem da parte de um aluno cuja mãe completou a facu
 %%%%%% Tabela com testes para as relacoes das notas
 \begin{table}[htb]
 \caption{Testes para as relações com soma
- das notas dos alunos.}
+ das notas dos alunos.\label{tab::tests_notas}}
     \centering
     \begin{tabular}{cccc}
     \toprule
@@ -225,6 +225,23 @@ onde a maior nota registrada vem da parte de um aluno cuja mãe completou a facu
                     O Aprox. 0 refere-se à algum número 
                     muito pequeno considerado por este estudo aproximadamente zero.}
 \end{table}
+
+% analise dos testes (tabela tab::tests_notas)
+Ao realizar testes, verificou se em média, esta soma de notas, hávia indícios de aceitar
+alguma diferença significativa com base em alguma relação abordada com a confiança 95\%.
+Para efetuar estes testes, foi avaliado primeiramente a hipótese de igualdade sobre as variâncias
+das notas (Teste B) para cada relação efetuada pelo estudo como as localizações das escolas, 
+escolaridade da mãe, sexo e a raça/cor do aluno, no qual apenas a relação com o sexo rejeita esta hipótese.
+
+Ao concluir sobre as relações com as variâncias, \autoref{tab::tests_notas}, foi avaliado estas
+hipóteses de igualdades dessas médias, que pelo mesmo nível de confiança, houve indícios de rejeita 
+com base nos sexos, que diz sobre não existir a diferença sobre as médias entre estas notas com base no 
+sexo do aluno. Sobe a mesma hipótese, as relações com a raça/cor do aluno e a escolaridade da mãe (Teste ANOVA), 
+houve indícios significativos de que em alguma destas relações houve alguma diferença com base na média,
+no qual testes dois a dois (Teste T) são apropriados para investigar qual foi estas diferenças.
+Para a relação com as localizações das escolas, também foi rejeitada essa hipótese, no qual as escolas 
+urbanas obteve a média desta soma de notas dos alunos superior às escolas rurais.
+
 
 \newpage
 %%%%%% Tabela de comparacao entre raca/cor e notas
