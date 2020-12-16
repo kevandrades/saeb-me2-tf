@@ -152,8 +152,8 @@ com base na escolaridade das mães dos alunos.\label{tab:esc_mae_afzr}}
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
 \end{figure}
 Ao se observar a \autoref{fig:raca_cor_notas}, nota-se que a soma das notas dos grupos tem uma
-tendência de medida central em 500, que varia pouco de acordo com a etnia, sendo
-a etnia Branca aquela que possui as maiores medidas de posição.
+tendência de medida central em 500, que varia pouco de acordo com a raça, sendo
+o fenótipo Branco aquele que possui as maiores medidas de posição.
 
 A raça Parda é a que possui o maior número de outliers entre os estudantes,
 mas a maior nota observada esteve presente no grupo que não quis declarar raça/cor.
@@ -233,10 +233,12 @@ onde a maior nota registrada vem da parte de um aluno cuja mãe completou a facu
 
 \newpage
 %%%%%% Tabela de comparacao entre raca/cor e notas
+A \autoref{tab:raca_cor_notas} mostra os resultados da comparação dois a dois entre
+as notas por raça/cor.
 \begin{table}[htb]
     \centering
 \caption{Comparações dois a dois entre as médias sobre a soma das notas
-        com base na raça/cor dos alunos.}
+        com base na raça/cor dos alunos.\label{tab:raca_cor_notas}}
     \begin{tabular}{lcc}
     \toprule
     Comparações & P-valor & Evidência (RA 95\%)\\
@@ -263,6 +265,17 @@ onde a maior nota registrada vem da parte de um aluno cuja mãe completou a facu
     \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
     
 \end{table}
+
+A raça branca apresentou diferença nos testes par a par entre todas as outras raças, confirmando
+o que a \autoref{fig:raca_cor_notas} apontava. Há uma clara desigualdade entre as notas por raça
+quando se compara a branca com as demais, e quase todas as desigualdades derivaram dela.
+
+As únicas desigualdades que não foram entre comparações de indivíduos de cor branca com outros
+foram a comparação entre indivíduos pardos e pretos, e também a comparação entre indivíduos pardos 
+que não quiseram declarar.
+
+Todos os outros testes não só levam à aceitação da hipótese nula, como apresentaram um p-valor
+significativamente alto.
 
 
 \newpage
