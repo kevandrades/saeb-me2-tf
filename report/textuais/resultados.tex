@@ -181,17 +181,17 @@ A área rural apresentou uma nota média de 479, que também é inferior à nota
 
 \newpage
 %%%%% Grafico da escolaridade da mae com notas
-A Figura \ref{img:esc_mae_notas} mostra a distribuição das notas em relação à escolaridade
+A Figura \autoref{img:esc_mae_notas} mostra a distribuição das notas em relação à escolaridade
 das mães.
 \begin{figure}[h]
     \caption{Distribuições das somas das notas com base nas escolaridades 
-    das mães dos alunos.}
+    das mães dos alunos\label{img:esc_mae_notas}}
     \begin{center}
         \includegraphics[width=16cm]{img/esc_mae_notas.pdf}
     \end{center}
     \fonte{Amostra de 5.271 alunos do 9\textsuperscript{o} ano do SAEB 2017.}
     \nota{Amostra retirada de uma amostragem aleatórias simples.}
-    \label{img:esc_mae_notas}
+
 \end{figure}
 
 É possível observar um crescimento das notas no geral à medida que o grau de escolaridade
@@ -280,9 +280,11 @@ significativamente alto.
 
 \newpage
 %%%%% Tabela de comparação da notas com Escolaridade da mae
+A \autoref{tab:esc_mae_notas} apresenta as comparações par a par de diferenças de notas entre os alunos
+para cada escolaridade da mãe.
 \begin{table}[htb]
     \centering
-\caption{\label{comp_MT}Comparações entre as médias de notas em Matemática e as regiões das escolas dos alunos com base na amostra de tamanho 500.}
+\caption{\label{tab:esc_mae_notas}Comparações dois a dois das notas entre os alunos com base na escolaridade da mãe}
     \begin{tabular}{lcc}
     \toprule
     Comparações & P-valor & Evidência (RA 95\%)\\
@@ -315,4 +317,12 @@ significativamente alto.
     \nota{Amostra retirada de uma amostragem aleatória simples.}
     \nota[Anotações]{Aprox. 0 refere-se à algum número muito pequeno considerando aproximadamente zero.}
     
-\end{table}
+  \end{table}
+
+As hipóteses iniciais para variável Escolaridade da Mãe são passadas na coluna Comparações,
+que supõe igualdade entre as médias dos grupos.
+
+E dentre esses grupos, somente aqueles que declararam não saber a escolaridade da mãe tiveram suas hipóteses
+de igualdade das médias rejeitadas, indicando diferença entre as notas médias desses estudantes com aqueles
+cujas mães completaram o Ensino Fundamental I e II, ensino médio e faculdade. A única hipótese de igualdade
+das notas desses estudantes aceita foi a com estudantes cujas mães nunca haviam estudado, com um valor p de 100\%.
