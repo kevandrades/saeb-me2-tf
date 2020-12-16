@@ -33,27 +33,27 @@ theme_hjw <- function(){
 histMtLp <- function(dados, xname){
  
 # separando o banco em 2 pra juntar nota em mat e lp em uma coluna só
-ntmt <- dados
-ntmt$NOTA_LP <- NULL
-ntmt$area <- 'Matemática'
-names(ntmt)[names(ntmt) == "NOTA_MT"] <- "nota"
+  ntmt <- dados
+  ntmt$NOTA_LP <- NULL
+  ntmt$area <- 'Matemática'
+  names(ntmt)[names(ntmt) == "NOTA_MT"] <- "nota"
 
 
-ntpt <- dados
-ntpt$NOTA_MT <- NULL
-ntpt$area <- 'Língua Portuguesa'
-names(ntpt)[names(ntpt) == "NOTA_LP"] <- "nota"
+  ntpt <- dados
+  ntpt$NOTA_MT <- NULL
+  ntpt$area <- 'Língua Portuguesa'
+  names(ntpt)[names(ntpt) == "NOTA_LP"] <- "nota"
 
-dados <- rbind(ntpt,ntmt)
+  dados <- rbind(ntpt,ntmt)
 
 #grafico
-dados %>%
-    ggplot(aes(x = nota, color = area, fill = area)) +
-    geom_histogram(binwidth = 18,alpha = 0.5, position = 'identity')+
-    scale_color_manual(values=c("#638bd6","white"))+
-    scale_fill_manual(values=c("#638bd6","white"))+
-    labs(x=xname, y = '')+
-    theme_hjw()+ theme(legend.position="none")
+  dados %>%
+      ggplot(aes(x = nota, color = area, fill = area)) +
+      geom_histogram(binwidth = 18,alpha = 0.5, position = 'identity')+
+      scale_color_manual(values=c("#638bd6","white"))+
+      scale_fill_manual(values=c("#638bd6","white"))+
+      labs(x=xname, y = '')+
+      theme_hjw()+ theme(legend.position="none")
   
 }
 
@@ -226,10 +226,8 @@ ggplot(saeb, aes(color = ESC_MAE, x = NOTAS, fill = ESC_MAE))+
 
 
 #___________escolaridade da mae pelo tempo de afazeres domesticos
-dados <- saeb
-
 #criando o banco para o grafico
-basico_afazer <- round(prop.table(table(select(dados,AFAZERES_DOM,ESC_MAE)),2),2) %>% as.data.frame()
+basico_afazer <- round(prop.table(table(select(saeb, AFAZERES_DOM,ESC_MAE)),2),2) %>% as.data.frame()
 basico_afazer$legenda <- str_c(basico_afazer$Freq * 100, '%') %>% str_replace('\\.',',')
 
 # Coloca 0 em nas dezenas
