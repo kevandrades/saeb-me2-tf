@@ -31,8 +31,6 @@ theme_hjw <- function(){
 #___________________________________Função para gerar o histograma
 
 histMtLp <- function(dados, xname){
-
-dados <- dados  
  
 # separando o banco em 2 pra juntar nota em mat e lp em uma coluna só
 ntmt <- dados
