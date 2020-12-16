@@ -111,7 +111,7 @@ freq <- map(select(saeb, -c(NOTA_LP,NOTA_MT)), # Dados
 # ?? Proporção ??? para as relações "LOCALIZACAO", "RACA_COR", "SEXO" com AFAZERES_DOM
 
 {basico_afazer <- list()
-  for (fator in c("LOCALIZACAO", "RACA_COR", "SEXO")) {
+  for (fator in c("ESC_MAE", "RACA_COR", "SEXO")) {
     basico_afazer[[fator]] <- round(prop.table(table(select(saeb,fator,AFAZERES_DOM)),2),2)
   } # Proporção por coluna (2)
 }
@@ -220,7 +220,7 @@ kruskal.test(AFAZERES_DOM ~ RACA_COR, comp_afr) # Mesmo p-valor para 2 categoria
 kruskal.test(AFAZERES_DOM ~ ESC_MAE, comp_afr) 
 
 # Comparação 2 a 2
-pairwise.wilcox.test(comp_afr$AFAZERES_DOMs, comp_notas$ESC_MAE, p.adjust.method = "b")
+pairwise.wilcox.test(comp_afr$AFAZERES_DOM, comp_afr$ESC_MAE, p.adjust.method = "b")
 
 
 ## SEXO --- AFAZERES_DOM ##
